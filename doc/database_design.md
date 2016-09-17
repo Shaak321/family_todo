@@ -1,3 +1,3 @@
 # Database design
 
-![Database design](/img/database.png)
+![Database design](img/database.png)
