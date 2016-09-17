@@ -8,8 +8,6 @@
     * For registration you can use username and password of your heart's content,  
     but the username must be unique.
   * Managing your account
-    * Add yourself to a family
-      * To add yourself to a family you need the family's unique identifier, which is handed to you by the family administrator.
     * Rename yourself
     * Delete yourself
     * Edit your personal information:
