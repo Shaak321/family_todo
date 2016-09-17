@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: family_todo
+version: v1
+baseUri: http://api.samplehost.com
+
+/login:
+  post:
+    description: Sends user's username and password for authentication
+    body:
+      application/json:
+        example:
+          {
+            "username": "JohnDoe01",
+            "password": "12345abc"
+          }
+    responses:
+      200:
+        description: Login was successful
+      404:
+        description: Username or password is wrong, no such user.
+/logout:
+  post:
+    description: Sends user's session id in order to log out
+    body:
+      application/json:
+        example:
+          {
+            "sessionId": "SADFGFDVXCCXV1234GERT%"
+          }
+    responses:
+      200:
+        description: Log out was successful.
+      404:
+        description: The given session id did not exists.
+/register:
+  post:
+    description: Sends registration information in order to register to the website
+    body:
+      application/xml:
