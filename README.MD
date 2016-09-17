@@ -15,5 +15,5 @@
   * [Wire frames](blank)
   * [Site map](blank)
   * [Architecture design](blank)
-  * [Database design](blank)
+  * [Database design](database_design.md)
   * [Renderings](blank)
