@@ -16,6 +16,6 @@
   * Architecture design
     * [Components](blank)
     * [Site map](doc/sitemap.md)
-    * [End points](blank)
+    * [End points](/doc/html/familyTodo.html)
   * [Database design](doc/database_design.md)
   * [Renderings](blank)
