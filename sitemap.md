@@ -18,10 +18,27 @@
           * Family details
             * Show family infos
             * List members
-              * Show todo list of members
+              * Show TODO list of members
       * Add family
     * Manage TODO's
       * Create TODO
       * List TODO's
       * TODO details
       * Edit TODO's
+  * Global administrator
+    * Homepage
+    * Help
+    * Login/Logout
+    * My account
+      * Edit informations
+    * List all user
+      * Delete user
+      * Edit user informations
+    * List all families
+      * Edit family
+        * Edit family name
+        * Delete member
+      * Delete family
+    * List all TODO's
+      * Edit TODO's
+      * Delete TODO's
