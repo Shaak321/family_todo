@@ -86,10 +86,12 @@ baseUri: http://api.samplehost.com
                 "users":
                   [
                     {
+                      "id": 1,
                       "username": "JohnDoe01",
                       "name": "John Doe"
                     },
                     {
+                      "id": 2,
                       "username": "MaryPoppins",
                       "name": "Mary Poppins"
                     }
@@ -111,6 +113,7 @@ baseUri: http://api.samplehost.com
             application/xml:
               example:
                 {
+                "id": 1,
                 "username": "JohnDoe01",
                 "name": "John Doe",
                 "phoneNumber": 012345,
@@ -136,6 +139,7 @@ baseUri: http://api.samplehost.com
           description: The modified information to be persisted in database.
           example:
             {
+              "id": 1,
               "username": "JohnDoe01",
               "password": "12345abc",
               "name": "John Doe",
@@ -166,7 +170,10 @@ baseUri: http://api.samplehost.com
           description: No such user or no permission.
     /families:
       get:
-        description: Get all families for the specified user
+        description: |
+                      Get all families for the specified user
+                      that he/she is member of.
+
         headers:
           Authorization:
             description: Payload for HTTP basic authentication
@@ -194,5 +201,7 @@ baseUri: http://api.samplehost.com
                 application/json:
                   example:
                     {
-                    
+                      "id": 3,
+                      "name": "Doe's family",
+                      "adminId": 1
                     }
