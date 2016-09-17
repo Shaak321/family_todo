@@ -9,8 +9,11 @@
 
   ###Documentation:
   **Summary:** This is the official documentation of this project. Documentation consists of several links listed below, to ease the navigation.
-
   * [requirements](blank)
   * [requirement analysis](blank)
     * [Functional](blank)
     * [Non-functional](blank)
+  * [Roles, uses cases, processes](blank)
+    * [Roles](blank)
+    * [Use cases](blank)
+    * [processes](blank)
