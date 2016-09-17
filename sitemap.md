@@ -10,12 +10,18 @@
     * Login/Logout
     * My account
       * Edit informations
-    * Manage families
+      * Delete myself
+    * My families
       * List families
-          * Edit family
-          * Delete family
+          * Edit family (if family or global administrator)
+          * Delete family (if family or global administrator)
+          * Family details
+            * Show family infos
+            * List members
+              * Show todo list of members
       * Add family
-    * Create todo
-    * List todo's
-    * Todo details
-    * Edit todo's
+    * Manage TODO's
+      * Create TODO
+      * List TODO's
+      * TODO details
+      * Edit TODO's
