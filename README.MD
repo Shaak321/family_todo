@@ -6,7 +6,7 @@
   **Summary:** This is the official documentation.   
    Documentation consists of several links listed below, to ease the navigation.
   * Requirements
-    * [Functional](blank)
+    * [Functional](functional_requirements.md)
     * [Non-functional](blank)
   * Roles, uses cases, processes
     * [Roles](blank)
