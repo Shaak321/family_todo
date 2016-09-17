@@ -23,7 +23,7 @@
     * Manage TODO's
       * Create TODO
       * List TODO's
-      * TODO detailsblank
+      * TODO details
       * Edit TODO's
   * Global administrator
     * Homepage
