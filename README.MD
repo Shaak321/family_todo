@@ -13,7 +13,9 @@
     * [Use cases](blank)
     * [Processes](blank)
   * [Wire frames](blank)
-  * [Site map](sitemap.md)
-  * [Architecture design](blank)
+  * Architecture design
+    * [Components](blank)
+    * [Site map](sitemap.md)
+    * [End points](blank)
   * [Database design](database_design.md)
   * [Renderings](blank)
