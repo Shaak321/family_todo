@@ -13,8 +13,7 @@
     * Rename yourself
     * Delete yourself
     * Edit your personal information:
-      * First name
-      * Last name
+      * Name
       * Phone number
       * Home
       * Workplace
