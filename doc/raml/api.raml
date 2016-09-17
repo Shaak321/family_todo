@@ -16,6 +16,12 @@ baseUri: http://api.samplehost.com
     responses:
       200:
         description: Login was successful
+        body:
+          application/xml:
+            example:
+              {
+                "sessionId": "QWEQWEASD1234DFDFG"
+              }
       404:
         description: Username or password is wrong, no such user.
 /logout:
@@ -37,3 +43,156 @@ baseUri: http://api.samplehost.com
     description: Sends registration information in order to register to the website
     body:
       application/xml:
+        example:
+          {
+            "username": "JohnDoe01",
+            "password": "12345abc",
+            "name": "John Doe",
+            "phoneNumber": 012345,
+            "home": "Somewhere",
+            "workplace": "Somewhere else",
+            "role": "father",
+            "birth": 1970.05.22
+          }
+    responses:
+      200:
+        description: Registration was successful
+      409:
+        description: Username already taken
+      412:
+        description: validation of given data was erronous
+        body:
+          application/json:
+            example:
+              {
+                "erronousField":"username"
+              }
+/users:
+  get:
+    description: |
+                  gets all user's basic info in case of that the user that is requesting
+                  is a global administrator
+    headers:
+      Authorization:
+        description: Payload for HTTP basic authentication
+        required: true
+        example: Basic QWER!+%%/=
+    responses:
+      200:
+        body:
+          application/xml:
+            example:
+              {
+                "users":
+                  [
+                    {
+                      "username": "JohnDoe01",
+                      "name": "John Doe"
+                    },
+                    {
+                      "username": "MaryPoppins",
+                      "name": "Mary Poppins"
+                    }
+                  ]
+              }
+  /{userId}:
+    get:
+      description: |
+                    gets the specified user's all information in case of that the user that is requesting
+                    is a global administrator or they part of the same family
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example: Basic QWER!+%%/=
+      responses:
+        200:
+          body:
+            application/xml:
+              example:
+                {
+                "username": "JohnDoe01",
+                "name": "John Doe",
+                "phoneNumber": 012345,
+                "home": "Somewhere",
+                "workplace": "Somewhere else",
+                "role": "father",
+                "birth": 1970.05.22,
+                "families": [1,2,4]
+                }
+        404:
+          description: No such user or no permission
+    patch:
+      description: |
+                    Modifies the given user if and only if, the specified
+                    userId is the same, with the one's who is requesting.
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example: Basic QWER!+%%/=
+      body:
+        application/json:
+          description: The modified information to be persisted in database.
+          example:
+            {
+              "username": "JohnDoe01",
+              "password": "12345abc",
+              "name": "John Doe",
+              "phoneNumber": 012345,
+              "home": "Somewhere",
+              "workplace": "Somewhere else",
+              "role": "father",
+              "birth": 1970.05.22
+            }
+      responses:
+        200:
+          description: Modification was successful
+        404:
+          description: No such user or no permission
+    delete:
+      description: |
+                    Deletes the given user if and only if, the specified
+                    userId is the same, with the one's who is requesting.
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example: Basic QWER!+%%/=
+      responses:
+        200:
+          description: Deletion was successful.
+        404:
+          description: No such user or no permission.
+    /families:
+      get:
+        description: Get all families for the specified user
+        headers:
+          Authorization:
+            description: Payload for HTTP basic authentication
+            required: true
+            example: Basic QWER!+%%/=
+        responses:
+          200:
+            body:
+              application/json:
+                example:
+                  {
+                    "families":[12,35,43,1]
+                  }
+      /{familyId}:
+        get:
+          description: Get all information from the specified family
+          headers:
+            Authorization:
+              description: Payload for HTTP basic authentication
+              required: true
+              example: Basic QWER!+%%/=
+          responses:
+            200:
+              body:
+                application/json:
+                  example:
+                    {
+                    
+                    }
