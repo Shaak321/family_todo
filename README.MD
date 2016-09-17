@@ -2,7 +2,7 @@
 
 **Summary:** This project is a todo list for families written in javascript.  
 
-  ### Documentation:  
+  ## Documentation:  
   **Summary:** This is the official documentation.   
    Documentation consists of several links listed below, to ease the navigation.
   * Requirements
