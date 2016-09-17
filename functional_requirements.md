@@ -1,6 +1,6 @@
 # Functional requiremets
 
-  ### Services we provide:
+### Services we provide
   * Registration
     * For registration you can use username and password of your heart's content,  
     but the username must be unique.
@@ -37,3 +37,6 @@
       * Delete family
       * Rename family
   * View the todo's of your family members
+  * We provide a global system administrator user who is capable of change everything on the site, i.e: accounts, todo's, etc...
+### Authentication
+    You need authentication to be able to visit all the sites on this page, but registration.
