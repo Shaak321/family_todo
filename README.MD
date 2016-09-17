@@ -1,19 +1,24 @@
-#Family todo list
+#Family todo
 
 **Summary:** This project is a todo list for families. You can:
   * Create a new Family
-  * Add people to Family
-  * Add todo to yourself
-  * Manage all your todo's (list, delete, modify)
+  * Manage your family and its members i.e: add a new member, delete one and so on.
+  * Manage all your todo's
   * List all your family's todo's
 
   ###Documentation:
-  **Summary:** This is the official documentation of this project. Documentation consists of several links listed below, to ease the navigation.
-  * [requirements](blank)
-  * [requirement analysis](blank)
+  **Summary:** This is the official documentation.
+   Documentation consists of several links listed below, to ease the navigation.
+  * [Requirements](blank)
+  * [Requirement analysis](blank)
     * [Functional](blank)
     * [Non-functional](blank)
   * [Roles, uses cases, processes](blank)
     * [Roles](blank)
     * [Use cases](blank)
-    * [processes](blank)
+    * [Processes](blank)
+  * [Wire frames](blank)
+  * [Site map](blank)
+  * [Architecture design](blank)
+  * [Database design](blank)
+  * [Renderings](blank)
