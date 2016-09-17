@@ -1,6 +1,6 @@
 #Family todo
 
-**Summary:** This project is a todo list for families written in javascript.  
+**Summary:** This project is a todo list website for families written in javascript.  
 
 ## Documentation:  
   **Summary:** This is the official documentation.   
