@@ -8,7 +8,7 @@ baseUri: http://api.samplehost.com
     description: Sends user's username and password for authentication
     body:
       application/json:
-        example:
+        example: |
           {
             "username": "JohnDoe01",
             "password": "12345abc"
@@ -18,7 +18,7 @@ baseUri: http://api.samplehost.com
         description: Login was successful
         body:
           application/xml:
-            example:
+            example: |
               {
                 "sessionId": "QWEQWEASD1234DFDFG"
               }
@@ -29,7 +29,7 @@ baseUri: http://api.samplehost.com
     description: Sends user's session id in order to log out
     body:
       application/json:
-        example:
+        example: |
           {
             "sessionId": "SADFGFDVXCCXV1234GERT%"
           }
@@ -43,7 +43,7 @@ baseUri: http://api.samplehost.com
     description: Sends registration information in order to register to the website
     body:
       application/xml:
-        example:
+        example: |
           {
             "username": "JohnDoe01",
             "password": "12345abc",
@@ -63,7 +63,7 @@ baseUri: http://api.samplehost.com
         description: validation of given data was erronous
         body:
           application/json:
-            example:
+            example: |
               {
                 "erronousField":"username"
               }
@@ -76,12 +76,12 @@ baseUri: http://api.samplehost.com
       Authorization:
         description: Payload for HTTP basic authentication
         required: true
-        example: Basic QWER!+%%/=
+        example:  Basic QWER!+%%/=
     responses:
       200:
         body:
           application/xml:
-            example:
+            example: |
               {
                 "users":
                   [
@@ -106,12 +106,12 @@ baseUri: http://api.samplehost.com
         Authorization:
           description: Payload for HTTP basic authentication
           required: true
-          example: Basic QWER!+%%/=
+          example:  Basic QWER!+%%/=
       responses:
         200:
           body:
             application/xml:
-              example:
+              example: |
                 {
                 "id": 1,
                 "username": "JohnDoe01",
@@ -133,11 +133,11 @@ baseUri: http://api.samplehost.com
         Authorization:
           description: Payload for HTTP basic authentication
           required: true
-          example: Basic QWER!+%%/=
+          example:  Basic QWER!+%%/=
       body:
         application/json:
           description: The modified information to be persisted in database.
-          example:
+          example: |
             {
               "id": 1,
               "username": "JohnDoe01",
@@ -162,7 +162,7 @@ baseUri: http://api.samplehost.com
         Authorization:
           description: Payload for HTTP basic authentication
           required: true
-          example: Basic QWER!+%%/=
+          example:  Basic QWER!+%%/=
       responses:
         200:
           description: Deletion was successful.
@@ -178,12 +178,12 @@ baseUri: http://api.samplehost.com
           Authorization:
             description: Payload for HTTP basic authentication
             required: true
-            example: Basic QWER!+%%/=
+            example:  Basic QWER!+%%/=
         responses:
           200:
             body:
               application/json:
-                example:
+                example: |
                   {
                     "families":[12,35,43,1]
                   }
@@ -194,12 +194,12 @@ baseUri: http://api.samplehost.com
             Authorization:
               description: Payload for HTTP basic authentication
               required: true
-              example: Basic QWER!+%%/=
+              example:  Basic QWER!+%%/=
           responses:
             200:
               body:
                 application/json:
-                  example:
+                  example: |
                     {
                       "id": 3,
                       "name": "Doe's family",
