@@ -13,7 +13,7 @@
     * [Use cases](blank)
     * [Processes](blank)
   * [Wire frames](blank)
-  * [Site map](blank)
+  * [Site map](sitemap.md)
   * [Architecture design](blank)
   * [Database design](database_design.md)
   * [Renderings](blank)
