@@ -168,7 +168,7 @@ baseUri: http://api.samplehost.com
           description: Deletion was successful.
         404:
           description: No such user or no permission.
-    /families:
+/families:
       get:
         description: |
                       Get all families for the specified user
@@ -187,6 +187,8 @@ baseUri: http://api.samplehost.com
                   {
                     "families":[12,35,43,1]
                   }
+          401:
+            description: Unauthorized
       /{familyId}:
         get:
           description: Get all information from the specified family
@@ -205,3 +207,36 @@ baseUri: http://api.samplehost.com
                       "name": "Doe's family",
                       "adminId": 1
                     }
+            401:
+              description: Unauthorized
+      patch:
+        description: Modify the family that he/she owns as an administrator.
+        headers:
+          Authorization:
+            description: Payload for HTTP basic authentication
+            required: true
+            example:  Basic QWER!+%%/=
+        body:
+          application/json:
+            example:
+              {
+                "id": 3,
+                "name": "OtherDoe's family",
+              }
+        responses:
+          200:
+            description: Modification was succesfull
+          404:
+            description: no such family or no permission
+      delete:
+        description: Delete the family that he/she owns as an administrator.
+        headers:
+          Authorization:
+            description: Payload for HTTP basic authentication
+            required: true
+            example:  Basic QWER!+%%/=
+        responses:
+          200:
+            description: Deletion was succesfull
+          404:
+            description: no such family or no permission
