@@ -172,7 +172,8 @@ baseUri: http://api.samplehost.com
       get:
         description: |
                       Get all families for the specified user
-                      that he/she is member of.
+                      that he/she is member of or if he or she is the global
+                      administrator, it returns all the families
 
         headers:
           Authorization:
@@ -209,8 +210,43 @@ baseUri: http://api.samplehost.com
                     }
             401:
               description: Unauthorized
-      patch:
-        description: Modify the family that he/she owns as an administrator.
+        patch:
+          description: |
+                        Modify the family that he/she owns as an administrator or
+                        global administrator.
+          headers:
+            Authorization:
+              description: Payload for HTTP basic authentication
+              required: true
+              example:  Basic QWER!+%%/=
+          body:
+            application/json:
+              example:
+                {
+                  "id": 3,
+                  "name": "OtherDoe's family",
+                }
+          responses:
+            200:
+              description: Modification was succesfull
+            404:
+              description: no such family or no permission
+        delete:
+          description: |
+                        Modify the family that he/she owns as an administrator or
+                        global administrator.
+          headers:
+            Authorization:
+              description: Payload for HTTP basic authentication
+              required: true
+              example:  Basic QWER!+%%/=
+          responses:
+            200:
+              description: Deletion was succesfull
+            404:
+              description: no such family or no permission
+      post:
+        description: Creates a new family.
         headers:
           Authorization:
             description: Payload for HTTP basic authentication
@@ -218,25 +254,8 @@ baseUri: http://api.samplehost.com
             example:  Basic QWER!+%%/=
         body:
           application/json:
-            example:
+            example: |
               {
-                "id": 3,
-                "name": "OtherDoe's family",
+                "familyName": "Doe's family",
+                "adminId":
               }
-        responses:
-          200:
-            description: Modification was succesfull
-          404:
-            description: no such family or no permission
-      delete:
-        description: Delete the family that he/she owns as an administrator.
-        headers:
-          Authorization:
-            description: Payload for HTTP basic authentication
-            required: true
-            example:  Basic QWER!+%%/=
-        responses:
-          200:
-            description: Deletion was succesfull
-          404:
-            description: no such family or no permission
