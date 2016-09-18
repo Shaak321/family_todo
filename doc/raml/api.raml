@@ -188,6 +188,42 @@ baseUri: http://api.samplehost.com
                     {
                       "familyId": "WDWQER"+!%%"
                     }
+    /todos:
+      get:
+        description: |
+                      Get all the TODO's associated with the specified user if and only if
+                      the requester has the given userId or he/she is part of the same family
+                      as the holder of the given userId, or he/she is the global administrator
+        headers:
+          Authorization:
+            description: Payload for HTTP basic authentication
+            required: true
+            example:  Basic QWER!+%%/=
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                  "todos":[
+                    {
+                      "start": "2010-05-02",
+                      "end": "2010-05-03",
+                      "name":"My Little todo",
+                      "description": "My litte todo description",
+                      "location": "Home"
+                    },
+                    {
+                    "start": "2010-05-04",
+                    "end": "2010-05-06",
+                    "name":"My Little todo2",
+                    "description": "My litte todo2 description",
+                    "location": "Work"
+                    }
+                  ]
+                  }
+          404:
+            description: no such user or no permission
 /families:
       get:
         description: |
@@ -281,3 +317,38 @@ baseUri: http://api.samplehost.com
               description: Deletion was successful
             404:
               description: no such family or no permission
+/todos:
+  get:
+    description: |
+                  List all the todo's in the system if and only if
+                  the requester is the global admin.
+    headers:
+      Authorization:
+        description: Payload for HTTP basic authentication
+        required: true
+        example:  Basic QWER!+%%/=
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+              "todos":[
+                {
+                  "start": "2010-05-02",
+                  "end": "2010-05-03",
+                  "name":"My Little todo",
+                  "description": "My litte todo description",
+                  "location": "Home"
+                },
+                {
+                "start": "2010-05-04",
+                "end": "2010-05-06",
+                "name":"My Little todo2",
+                "description": "My litte todo2 description",
+                "location": "Work"
+                }
+              ]
+            }
+      401:
+        description: Unauthorized
