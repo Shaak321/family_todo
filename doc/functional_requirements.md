@@ -33,7 +33,7 @@
   * Creation of new family with a name of your choice
     * You instantly became the administrator of a family that has been created by you.
   * Managing your family
-      * Add new members
+      * Add new members by sharing the unique code of your family to the person you want to add.
       * Delete members
       * Delete family
       * Rename family
