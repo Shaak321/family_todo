@@ -16,6 +16,6 @@
   * Architecture design
     * [Components](blank)
     * [Site map](doc/sitemap.md)
-    * [End points](/doc/html/familyTodo.html)
+    * [End points](http://people.inf.elte.hu/szguaai/alkfejl/familyTodo.html)
   * [Database design](doc/database_design.md)
   * [Renderings](blank)
