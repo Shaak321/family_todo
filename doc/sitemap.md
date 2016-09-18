@@ -2,11 +2,9 @@
 
   * Public
     * Homepage
-    * Help
     * Login
   * Registered user
     * Homepage
-    * Help
     * Login/Logout
     * My account
       * Edit informations
@@ -27,7 +25,6 @@
       * Edit TODO's
   * Global administrator
     * Homepage
-    * Help
     * Login/Logout
     * My account
       * Edit informations
