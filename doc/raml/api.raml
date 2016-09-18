@@ -317,6 +317,25 @@ baseUri: http://api.samplehost.com
               description: Deletion was successful
             404:
               description: no such family or no permission
+        /deleteMember:
+          /{userId}:
+            delete:
+              description: |
+                            Deletes the specified user from the specified family
+                            if and only if:
+                              * The requester owns the family
+                              * The requester is the global administrator
+                              * The requester has the same userId as the specified one.
+              headers:
+                Authorization:
+                  description: Payload for HTTP basic authentication
+                  required: true
+                  example:  Basic QWER!+%%/=
+              responses:
+                200:
+                  description: Deletion was successful.
+                404:
+                  description: No such family or user of the family or no permission
 /todos:
   get:
     description: |
@@ -468,3 +487,15 @@ baseUri: http://api.samplehost.com
           description: Deletion was successful.
         404:
           description: No such TODO or no permission for display.
+    /complete:
+      patch:
+        description: |
+                      Changes the status of the specified TODO to completed
+                      if and only if:
+                        * The requester owns the TODO.
+                        * The requester is the global administrator.
+        responses:
+          200:
+            description: Change was successful
+          404:
+            description: No such TODO or no permission for display
