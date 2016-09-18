@@ -448,3 +448,18 @@ baseUri: http://api.samplehost.com
                 {
                   "erronousField":"start"
                 }
+    delete:
+      description: |
+                    Deletes the given TODO if and only if the requester
+                    is the owner of the specified TODO or he/she is the global
+                    administrator.
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example:  Basic QWER!+%%/=
+      responses:
+        200:
+          description: Deletion was successful.
+        404:
+          description: No such TODO or no permission for display.
