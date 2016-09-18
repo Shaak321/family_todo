@@ -335,6 +335,7 @@ baseUri: http://api.samplehost.com
               {
               "todos":[
                 {
+                  "id": 2,
                   "start": "2010-05-02",
                   "end": "2010-05-03",
                   "name":"My Little todo",
@@ -342,6 +343,7 @@ baseUri: http://api.samplehost.com
                   "location": "Home"
                 },
                 {
+                "id": 3,
                 "start": "2010-05-04",
                 "end": "2010-05-06",
                 "name":"My Little todo2",
@@ -384,3 +386,65 @@ baseUri: http://api.samplehost.com
               {
                 "erronousField":"start"
               }
+  /{todoId}:
+    get:
+      description: |
+                    Get all information from the specified TODO if and only if
+                    the requester is the owner of the TODO, or he/she is the
+                    global administrator, or he/she is in the same family as
+                    the owner of the specified TODO.
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example:  Basic QWER!+%%/=
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                  "id": 2,
+                  "start": "2010-05-02",
+                  "end": "2010-05-03",
+                  "name":"My Little todo",
+                  "description": "My litte todo description",
+                  "location": "Home"
+                }
+        404:
+          description: No such TODO or no permission for display.
+    patch:
+      description: |
+                    Modifies the given TODO if and only if the requester
+                    is the owner of the specified TODO or he/she is the global
+                    administrator.
+      headers:
+        Authorization:
+          description: Payload for HTTP basic authentication
+          required: true
+          example:  Basic QWER!+%%/=
+      body:
+        application/json:
+          example: |
+            {
+            "start": "2010-05-02",
+            "end": "2010-05-03",
+            "name":"My Little todo changed",
+            "description": "My litte todo changed description",
+            "location": "Not Home"
+            }
+      responses:
+        200:
+          description: Modification was successful.
+        404:
+          description: No such TODO or no permission for display.
+        409:
+          description: User has already a TODO with the same activity name.
+        412:
+          description: validation of given data was erronous
+          body:
+            application/json:
+              example: |
+                {
+                  "erronousField":"start"
+                }
