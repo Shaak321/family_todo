@@ -340,7 +340,8 @@ baseUri: http://api.samplehost.com
                   "end": "2010-05-03",
                   "name":"My Little todo",
                   "description": "My litte todo description",
-                  "location": "Home"
+                  "location": "Home",
+                  "isCompleted": true
                 },
                 {
                 "id": 3,
@@ -348,7 +349,8 @@ baseUri: http://api.samplehost.com
                 "end": "2010-05-06",
                 "name":"My Little todo2",
                 "description": "My litte todo2 description",
-                "location": "Work"
+                "location": "Work",
+                "isCompleted": false
                 }
               ]
             }
@@ -369,7 +371,8 @@ baseUri: http://api.samplehost.com
             "end": "2010-05-03",
             "name":"My Little todo",
             "description": "My litte todo description",
-            "location": "Home"
+            "location": "Home",
+            "isCompleted": false
           }
     responses:
       200:
@@ -409,7 +412,8 @@ baseUri: http://api.samplehost.com
                   "end": "2010-05-03",
                   "name":"My Little todo",
                   "description": "My litte todo description",
-                  "location": "Home"
+                  "location": "Home",
+                  "isCompleted": true
                 }
         404:
           description: No such TODO or no permission for display.
@@ -431,7 +435,8 @@ baseUri: http://api.samplehost.com
             "end": "2010-05-03",
             "name":"My Little todo changed",
             "description": "My litte todo changed description",
-            "location": "Not Home"
+            "location": "Not Home",
+            "isCompleted": true
             }
       responses:
         200:
