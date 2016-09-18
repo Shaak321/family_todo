@@ -25,6 +25,7 @@
         * Add activity name
         * Add activity description
         * Add location
+        * Manage lifecycle (Completed or not)
       * Edit your todo's
         * You can edit all the informations of a todo
       * Delete todo
