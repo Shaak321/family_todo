@@ -26,7 +26,7 @@ baseUri: http://api.samplehost.com
         description: Username or password is wrong, no such user.
 /logout:
   post:
-    description: Sends user's session id in order to log out
+    description: Sends user's session id in order to log him/her out
     body:
       application/json:
         example: |
@@ -50,8 +50,7 @@ baseUri: http://api.samplehost.com
             "name": "John Doe",
             "phoneNumber": 012345,
             "home": "Somewhere",
-            "workplace": "Somewhere else",
-            "role": "father",
+            "workplace": "Somewhere else
             "birth": 1970.05.22
           }
     responses:
@@ -71,7 +70,7 @@ baseUri: http://api.samplehost.com
   get:
     description: |
                   gets all user's basic info in case of that the user that is requesting
-                  is a global administrator
+                  is the global administrator
     headers:
       Authorization:
         description: Payload for HTTP basic authentication
@@ -100,8 +99,10 @@ baseUri: http://api.samplehost.com
   /{userId}:
     get:
       description: |
-                    gets the specified user's all information in case of that the user that is requesting
-                    is a global administrator or they part of the same family
+                    gets the specified user's all information in case of that the user
+                    that is requesting
+                    is the global administrator or they are part of the same family or
+                    the userId is the same, as the requester's userId
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -127,8 +128,9 @@ baseUri: http://api.samplehost.com
           description: No such user or no permission
     patch:
       description: |
-                    Modifies the given user if and only if, the specified
-                    userId is the same, with the one's who is requesting.
+                    Modifies the given user's information if and only if, the specified
+                    userId is the same, with the one's who is requesting or he/she is
+                    the global administrator.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -157,7 +159,8 @@ baseUri: http://api.samplehost.com
     delete:
       description: |
                     Deletes the given user if and only if, the specified
-                    userId is the same, with the one's who is requesting.
+                    userId is the same, with the one's who is requesting
+                    or he/she is the global administrator.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -168,12 +171,29 @@ baseUri: http://api.samplehost.com
           description: Deletion was successful.
         404:
           description: No such user or no permission.
+    /joinFamily:
+      post:
+            description: |
+                          join to the given family with the specified familyId
+                          if and only if the given userId is the same, as the one's
+                          who has the dispatched sessionId.
+            headers:
+              Authorization:
+                description: Payload for HTTP basic authentication
+                required: true
+                example:  Basic QWER!+%%/=
+            body:
+                application/json:
+                  example: |
+                    {
+                      "familyId": "WDWQER"+!%%"
+                    }
 /families:
       get:
         description: |
                       Get all families for the specified user
-                      that he/she is member of or if he or she is the global
-                      administrator, it returns all the families
+                      that he/she is member of.If he or she is the global
+                      administrator then it returns all the families.
 
         headers:
           Authorization:
@@ -190,9 +210,26 @@ baseUri: http://api.samplehost.com
                   }
           401:
             description: Unauthorized
+      post:
+        description: Creates a new family.
+        headers:
+          Authorization:
+            description: Payload for HTTP basic authentication
+            required: true
+            example:  Basic QWER!+%%/=
+        body:
+          application/json:
+            example: |
+              {
+                "familyName": "Doe's family",
+                "adminId": 3
+              }
       /{familyId}:
         get:
-          description: Get all information from the specified family
+          description: |
+                        Get all information from the specified family if and only if
+                        the requester is part of the family or he/she is the
+                        global administrator.
           headers:
             Authorization:
               description: Payload for HTTP basic authentication
@@ -212,7 +249,7 @@ baseUri: http://api.samplehost.com
               description: Unauthorized
         patch:
           description: |
-                        Modify the family that he/she owns as an administrator or
+                        Modify the family that he/she owns as an administrator or as the
                         global administrator.
           headers:
             Authorization:
@@ -223,17 +260,16 @@ baseUri: http://api.samplehost.com
             application/json:
               example:
                 {
-                  "id": 3,
-                  "name": "OtherDoe's family",
+                  "familyName": "OtherDoe's family"
                 }
           responses:
             200:
-              description: Modification was succesfull
+              description: Modification was successful
             404:
               description: no such family or no permission
         delete:
           description: |
-                        Modify the family that he/she owns as an administrator or
+                        Deletes the family that he/she owns as an administrator or as the
                         global administrator.
           headers:
             Authorization:
@@ -242,20 +278,6 @@ baseUri: http://api.samplehost.com
               example:  Basic QWER!+%%/=
           responses:
             200:
-              description: Deletion was succesfull
+              description: Deletion was successful
             404:
               description: no such family or no permission
-      post:
-        description: Creates a new family.
-        headers:
-          Authorization:
-            description: Payload for HTTP basic authentication
-            required: true
-            example:  Basic QWER!+%%/=
-        body:
-          application/json:
-            example: |
-              {
-                "familyName": "Doe's family",
-                "adminId":
-              }
