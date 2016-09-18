@@ -352,3 +352,35 @@ baseUri: http://api.samplehost.com
             }
       401:
         description: Unauthorized
+  post:
+    description: Create a todo for the specified user, specified in the sessionId
+    headers:
+      Authorization:
+        description: Payload for HTTP basic authentication
+        required: true
+        example:  Basic QWER!+%%/=
+    body:
+      application/json:
+        example: |
+          {
+            "start": "2010-05-02",
+            "end": "2010-05-03",
+            "name":"My Little todo",
+            "description": "My litte todo description",
+            "location": "Home"
+          }
+    responses:
+      200:
+        description: TODO was succesfully added.
+      401:
+        description: Unauthorized.
+      409:
+        description: User has already a TODO with the same activity name.
+      412:
+        description: validation of given data was erronous
+        body:
+          application/json:
+            example: |
+              {
+                "erronousField":"start"
+              }
