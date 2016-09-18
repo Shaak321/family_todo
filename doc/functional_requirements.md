@@ -10,14 +10,12 @@
   * Managing your account
   * Add yourself to a family
     * To add yourself to a family you need the family's unique identifier, which is handed to you by the family administrator.
-    
     * Delete yourself
     * Edit your personal information:
       * Name
       * Phone number
       * Home
       * Workplace
-      * Role in the family
       * Birth date
     * Change password
     * Manage your todo's
