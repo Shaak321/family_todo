@@ -99,10 +99,10 @@ baseUri: http://api.samplehost.com
   /{userId}:
     get:
       description: |
-                    gets the specified user's all information in case of that the user
-                    that is requesting
-                    is the global administrator or they are part of the same family or
-                    the userId is the same, as the requester's userId
+                    gets the specified user's all information if
+                      * The requester is the global administrator
+                      * The requester and the holder of the userId are part of the same family
+                      * The requester has the same userId as the specified.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -125,12 +125,12 @@ baseUri: http://api.samplehost.com
                 "families": [1,2,4]
                 }
         404:
-          description: No such user or no permission
+          description: No such user or no permission for display
     patch:
       description: |
-                    Modifies the given user's information if and only if, the specified
-                    userId is the same, with the one's who is requesting or he/she is
-                    the global administrator.
+                    Modifies the given user's information if and only if
+                      * The requester has the same userId as the specified
+                      * The requester is the global administrator
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -138,7 +138,7 @@ baseUri: http://api.samplehost.com
           example:  Basic QWER!+%%/=
       body:
         application/json:
-          description: The modified information to be persisted in database.
+          description: The modified information to be persisted in the database.
           example: |
             {
               "id": 1,
@@ -155,12 +155,12 @@ baseUri: http://api.samplehost.com
         200:
           description: Modification was successful
         404:
-          description: No such user or no permission
+          description: No such user or no permission for display
     delete:
       description: |
-                    Deletes the given user if and only if, the specified
-                    userId is the same, with the one's who is requesting
-                    or he/she is the global administrator.
+                    Deletes the given user if and only if
+                      * The requester is the same as the holder of the specified userID
+                      * The requester is the global administrator
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -175,8 +175,8 @@ baseUri: http://api.samplehost.com
       post:
             description: |
                           join to the given family with the specified familyId
-                          if and only if the given userId is the same, as the one's
-                          who has the dispatched sessionId.
+                          if and only if
+                            * The requester has the same userId as the specified.
             headers:
               Authorization:
                 description: Payload for HTTP basic authentication
@@ -188,12 +188,19 @@ baseUri: http://api.samplehost.com
                     {
                       "familyId": "WDWQER"+!%%"
                     }
+            responses:
+              200:
+                description: Join was successful
+              404:
+                description: No such family
     /todos:
       get:
         description: |
                       Get all the TODO's associated with the specified user if and only if
-                      the requester has the given userId or he/she is part of the same family
-                      as the holder of the given userId, or he/she is the global administrator
+                        * The requester has the same userId as the specified
+                        * The requester is in the same family as the holder of the specified userId
+                        * The requester is the global administrator
+
         headers:
           Authorization:
             description: Payload for HTTP basic authentication
@@ -223,12 +230,12 @@ baseUri: http://api.samplehost.com
                   ]
                   }
           404:
-            description: no such user or no permission
+            description: no such user or no permission for display
 /families:
       get:
         description: |
-                      Get all families for the specified user
-                      that he/she is member of.If he or she is the global
+                      Get all families for the specified
+                      that the requester is member of.If the requester is the global
                       administrator then it returns all the families.
 
         headers:
@@ -260,12 +267,25 @@ baseUri: http://api.samplehost.com
                 "familyName": "Doe's family",
                 "adminId": 3
               }
+        responses:
+          200:
+            description: Creation was successful.
+          401:
+            description: Unauthorized
+          412:
+            description: validation of given data was erronous
+            body:
+             application/json:
+              example: |
+                {
+                  "erronousField":"familyName"
+                }
       /{familyId}:
         get:
           description: |
                         Get all information from the specified family if and only if
-                        the requester is part of the family or he/she is the
-                        global administrator.
+                          * The requester is part of the family
+                          * The requester is the global administrator
           headers:
             Authorization:
               description: Payload for HTTP basic authentication
@@ -285,8 +305,9 @@ baseUri: http://api.samplehost.com
               description: Unauthorized
         patch:
           description: |
-                        Modify the family that he/she owns as an administrator or as the
-                        global administrator.
+                        Modifies the family that
+                          * The requester owns as an administrator
+                          * The requester owns as global administrator.
           headers:
             Authorization:
               description: Payload for HTTP basic authentication
@@ -294,7 +315,7 @@ baseUri: http://api.samplehost.com
               example:  Basic QWER!+%%/=
           body:
             application/json:
-              example:
+              example: |
                 {
                   "familyName": "OtherDoe's family"
                 }
@@ -302,11 +323,20 @@ baseUri: http://api.samplehost.com
             200:
               description: Modification was successful
             404:
-              description: no such family or no permission
+              description: no such family or no permission for display
+            412:
+              description: validation of given data was erronous
+              body:
+               application/json:
+                example: |
+                  {
+                    "erronousField":"familyName"
+                  }
         delete:
           description: |
-                        Deletes the family that he/she owns as an administrator or as the
-                        global administrator.
+                        Deletes the family that
+                          * The requester owns as an administrator
+                          * The requester owns as global administrator.
           headers:
             Authorization:
               description: Payload for HTTP basic authentication
@@ -316,7 +346,7 @@ baseUri: http://api.samplehost.com
             200:
               description: Deletion was successful
             404:
-              description: no such family or no permission
+              description: no such family or no permission for display
         /deleteMember:
           /{userId}:
             delete:
@@ -335,12 +365,12 @@ baseUri: http://api.samplehost.com
                 200:
                   description: Deletion was successful.
                 404:
-                  description: No such family or user of the family or no permission
+                  description: No such family or user of the family or no permission for display
 /todos:
   get:
     description: |
                   List all the todo's in the system if and only if
-                  the requester is the global admin.
+                  the requester is the global administrator.
     headers:
       Authorization:
         description: Payload for HTTP basic authentication
@@ -350,33 +380,33 @@ baseUri: http://api.samplehost.com
       200:
         body:
           application/json:
-            example:
+            example: |
               {
-              "todos":[
-                {
-                  "id": 2,
-                  "start": "2010-05-02",
-                  "end": "2010-05-03",
-                  "name":"My Little todo",
-                  "description": "My litte todo description",
-                  "location": "Home",
-                  "isCompleted": true
-                },
-                {
-                "id": 3,
-                "start": "2010-05-04",
-                "end": "2010-05-06",
-                "name":"My Little todo2",
-                "description": "My litte todo2 description",
-                "location": "Work",
-                "isCompleted": false
-                }
-              ]
-            }
+                "todos":[
+                  {
+                    "id": 2,
+                    "start": "2010-05-02",
+                    "end": "2010-05-03",
+                    "name":"My Little todo",
+                    "description": "My litte todo description",
+                    "location": "Home",
+                    "isCompleted": true
+                  },
+                  {
+                  "id": 3,
+                  "start": "2010-05-04",
+                  "end": "2010-05-06",
+                  "name":"My Little todo2",
+                  "description": "My litte todo2 description",
+                  "location": "Work",
+                  "isCompleted": false
+                  }
+                ]
+              }
       401:
         description: Unauthorized
   post:
-    description: Create a todo for the specified user, specified in the sessionId
+    description: Create a TODO for the specified user, specified in the sessionId
     headers:
       Authorization:
         description: Payload for HTTP basic authentication
@@ -412,9 +442,9 @@ baseUri: http://api.samplehost.com
     get:
       description: |
                     Get all information from the specified TODO if and only if
-                    the requester is the owner of the TODO, or he/she is the
-                    global administrator, or he/she is in the same family as
-                    the owner of the specified TODO.
+                      * The requester is the owner of the TODO
+                      * The requester is global administrator
+                      * The requester is in the same family the owner of the specified TODO.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -424,7 +454,7 @@ baseUri: http://api.samplehost.com
         200:
           body:
             application/json:
-              example:
+              example: |
                 {
                   "id": 2,
                   "start": "2010-05-02",
@@ -438,9 +468,9 @@ baseUri: http://api.samplehost.com
           description: No such TODO or no permission for display.
     patch:
       description: |
-                    Modifies the given TODO if and only if the requester
-                    is the owner of the specified TODO or he/she is the global
-                    administrator.
+                    Modifies the given TODO if and only if
+                    * The requester is the owner of the specified TODO
+                    * The requester is the global administrator.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
@@ -474,9 +504,9 @@ baseUri: http://api.samplehost.com
                 }
     delete:
       description: |
-                    Deletes the given TODO if and only if the requester
-                    is the owner of the specified TODO or he/she is the global
-                    administrator.
+                    Deletes the given TODO if and only if
+                    * The requester is the owner of the specified TODO
+                    * The requester is the global administrator.
       headers:
         Authorization:
           description: Payload for HTTP basic authentication
