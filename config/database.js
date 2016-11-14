@@ -32,6 +32,7 @@ module.exports = {
     connection: {
       filename: Helpers.databasePath('development.sqlite')
     },
+    debug: true,	
     useNullAsDefault: true
   },
 
