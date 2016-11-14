@@ -18,4 +18,4 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.get('/hali','ValamiController.hello')
+Route.get('/register','RegisterController.index')

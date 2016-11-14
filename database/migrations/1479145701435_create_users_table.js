@@ -14,6 +14,7 @@ class UsersTableSchema extends Schema {
       table.integer('phonenumber').notNullable()
       table.string('home').notNullable()
       table.string('workplace').notNullable()
+      table.date('birth').notNullable()
       table.timestamps()
     })
   }
