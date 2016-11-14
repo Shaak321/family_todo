@@ -1,9 +1,13 @@
 'use strict'
 
+const User = use('App/Model/User')
+const Hash = use('Hash')
+const Validator = use('Validator')
+
+
 class RegisterController {
-  * register(request,response){
-      console.log('Im heeerreeee.......')
-      response.sendView('register');
+  * register(req,res){
+      yield res.sendView('register');
     }
 
     * doRegister(req, res) {
@@ -20,7 +24,6 @@ class RegisterController {
           home: req.input('home'),
           workplace: req.input('workplace'),
           birth: req.input('birth'),
-          phonenumber: req.input('phonenumber'),
           pass1: req.input('password1'),
           pass2: req.input('password2')
         }
@@ -28,19 +31,19 @@ class RegisterController {
         console.log(data);
 
         const rules = {
-          name: 'required|alpha|min:12',
+          name: 'required|min:12',
           username:  'required|min:3',
           email: 'required|email',
           pass1: 'required|same:pass2',
-          workplace: 'required|alpha|min:10',
+          workplace: 'required|min:10',
           birth: 'required|date',
-          phonenumber: 'required|number',
-          home: 'required|alpha|min:10',
+          home: 'required|min:10',
 
         }
 
         const validation = yield Validator.validateAll(data, rules)
         if(validation.fails()){
+            console.log(validation.messages())
             yield req
                 .withAll()
                 .andWith({ errors: validation.messages() })
@@ -57,7 +60,6 @@ class RegisterController {
         user.password = yield Hash.make(data.pass1)
         user.home = data.home
         user.workplace = data.workplace
-        user.phonenumber = data.phonenumber
         user.birth = data.birth
         yield user.save()
 

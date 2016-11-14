@@ -6,7 +6,7 @@ class LoginController {
     }
 
     * doLogin(req, res){
-        const email = req.input('username')
+        const username = req.input('username')
         const password = req.input('password')
 
         const loginMessage = {

@@ -21,7 +21,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         {% if currentUser %}
-
+            <li>Hello, {{currentUser.username}} </li>
               <form class="form-horizontal" action="/logout" method="POST">
                 {{ csrfField }}
               <button type="submit" class="btn btn-danger">Sign out</button>

@@ -21,5 +21,5 @@ Route.get('/register','RegisterController.register')
 Route.post('/register', 'RegisterController.doRegister')
 Route.get('/login', 'LoginController.login')
 Route.post('/login', 'LoginController.doLogin')
-
+Route.post('/logout', 'LoginController.logout')
 
