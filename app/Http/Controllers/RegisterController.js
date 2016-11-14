@@ -1,7 +1,8 @@
 'use strict'
 
 class RegisterController {
-  *index(request,response){
+  * register(request,response){
+      console.log('Im heeerreeee.......')
       response.sendView('register');
     }
 
