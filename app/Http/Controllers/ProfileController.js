@@ -28,7 +28,31 @@ class ProfileController {
          families.push(family)
      }
      //construct todo object
-     const todos = yield Database.from('todo').where('user_id',userId)
+     const familyIdsofSpecifiedUser = yield Database.from('user_family').select('family_id').where(function(){
+         this.where('user_id',userId)
+     })
+
+     let membersOfFamiliesOfSpecifiedUser = []
+     for(family of familyIdsofSpecifiedUser){
+         membersOfSpecifiedFamily = yield Database.from('user_family').select('user_id').where(function(){
+             this.where('family_id',family)
+             membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
+         })
+     }
+
+     var isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = false;
+     for(actualMemberOfSpecifiedUsersFamilies of membersOfFamiliesOfSpecifiedUser){
+         if(actualMemberOfSpecifiedUsersFamilies == req.currentUser.id){
+             isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = true
+             break;
+         }
+     }
+
+     var todos;
+     const allMembersOfFamiliesOfSpecifiedUser = Database.from('user_family').select('user_id')
+     if(isCurrentUserPartOfTheSameFamilyAsSpecifiedUser){
+        todos = yield Database.from('todo').where('user_id',userId)
+     }
      yield res.sendView('profile',{
             userInfo: userInfo,
             families: families,
