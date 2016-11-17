@@ -1,0 +1,42 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                   {{todo.name}}
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Start time</h4>
+                            <p class="list-group-item-text>{{todo.start}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">End time</h4>
+                            <p class="list-group-item-text>{{todo.end}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Description</h4>
+                            <p class="list-group-item-text>{{todo.description}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Owner</h4>
+                            <p class="list-group-item-text><a href="/profile/{{todo.user_id}}">{{owner.name}}</a></p>
+                    </div>
+                    </ul>
+  	          </div>
+  		</div>
+    </div>
+</div>
+{% endblock %}
+
+ table.date('start').notNullable()
+      table.date('end').notNullable()
+      table.string('name',300).notNullable()
+      table.string('description',2000).notNullable()
+      table.integer('user_id').unsigned().references('id').inTable('users')
+      table.boolean('iscompleted').notNullable()

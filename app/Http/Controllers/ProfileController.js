@@ -28,8 +28,12 @@ class ProfileController {
          families.push(family)
      }
      //construct todo object
+      const specifiedUsername = yield Database.from('users').select('username').where(function(){
+         this.where('id',userId)
+     })
+
      const familyIdsofSpecifiedUser = yield Database.from('user_family').select('family_id').where(function(){
-         this.where('user_id',userId)
+         this.where('username',specifiedUsername)
      })
 
      let membersOfFamiliesOfSpecifiedUser = []
