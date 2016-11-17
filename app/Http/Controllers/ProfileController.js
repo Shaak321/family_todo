@@ -35,7 +35,7 @@ class ProfileController {
             todos: todos
 		})
 
-console.log(userInfo)
+
 
  }else {
      res.sendView('register')
