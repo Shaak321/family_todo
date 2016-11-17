@@ -22,5 +22,5 @@ Route.post('/register', 'RegisterController.doRegister')
 Route.get('/login', 'LoginController.login')
 Route.post('/login', 'LoginController.doLogin')
 Route.post('/logout', 'LoginController.logout')
-Route.get('/profile','ProfileController.show')
+Route.get('/profile/:id','ProfileController.show')
 

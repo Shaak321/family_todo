@@ -7,15 +7,20 @@ class ProfileController {
  *show(req,res){
      if(req.currentUser){
      const currentUser = req.currentUser
-     const userId = req.currentUser.id
+     const userId = req.param('id');
+     //Catch if username is undefined
+     const username = yield Database.from('users').select('username').where(function(){
+         this.where('id',userId);
+     })
+
 
      //construct user information object
      const userInfo = yield Database.from('users').select('name','username','email','home','workplace','birth').where(function(){
-         this.where('username',req.currentUser.username)
+         this.where('id',userId)
      })
      //construct family object
      const familyIdsForCurrentUser = yield Database.from('user_family').select('family_id').where(function(){
-         this.where('username',currentUser.username)
+         this.where('username',username)
      })
      let families = []
      for(const family_id of familyIdsForCurrentUser){
