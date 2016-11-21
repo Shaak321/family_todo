@@ -27,4 +27,5 @@ Route.get('/family/:id', 'FamilyController.get')
 Route.get('/todo/:id','TodoController.get')
 Route.get('/addTodo', 'TodoController.add')
 Route.post('/addTodo', 'TodoController.doAdd')
-
+Route.get('/addFamily', 'FamilyController.add')
+Route.post('/addFamily', 'FamilyController.doAdd')

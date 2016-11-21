@@ -19,11 +19,14 @@ class ProfileController {
          this.where('id',userId)
      })
      //construct family object
-     const familyIdsForCurrentUser = yield Database.from('user_family').select('family_id').where(function(){
-         this.where('username',username)
+     const familyIdsForCurrentUser = yield Database.from('user_families').select('family_id').where(function(){
+         this.where('username',username[0].username)
      })
+     
      let families = []
+     
      for(const family_id of familyIdsForCurrentUser){
+         console.log(family_id)
          const family = yield Family.find(family_id.family_id)
          families.push(family)
      }
@@ -32,13 +35,13 @@ class ProfileController {
          this.where('id',userId)
      })
      
-     const familyIdsofSpecifiedUser = yield Database.from('user_family').select('family_id').where(function(){
+     const familyIdsofSpecifiedUser = yield Database.from('user_families').select('family_id').where(function(){
          this.where('username',specifiedUsername)
      })
      
      let membersOfFamiliesOfSpecifiedUser = []
      for(family of familyIdsofSpecifiedUser){
-         membersOfSpecifiedFamily = yield Database.from('user_family').select('user_id').where(function(){
+         membersOfSpecifiedFamily = yield Database.from('user_families').select('user_id').where(function(){
              this.where('family_id',family)
              membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
          })
@@ -53,7 +56,7 @@ class ProfileController {
      }
 
      var todos;
-     const allMembersOfFamiliesOfSpecifiedUser = Database.from('user_family').select('user_id')
+     const allMembersOfFamiliesOfSpecifiedUser = Database.from('user_families').select('user_id')
      if( userId == currentUser.id || isCurrentUserPartOfTheSameFamilyAsSpecifiedUser){
         todos = yield Database.from('todos').where('user_id',userId)
      }

@@ -1,6 +1,6 @@
 'use strict'
 const Database = use('Database')
-const Todo = use('App/Model/Todo')
+const Todo = use('App/Model/Todos')
 const Validator = use('Validator')
 class TodoController {
     *get(req,res){
@@ -17,13 +17,13 @@ class TodoController {
             
      //construct todo object
     
-     const familyIdsofSpecifiedUser = yield Database.from('user_family').select('family_id').where(function(){
+     const familyIdsofSpecifiedUser = yield Database.from('user_families').select('family_id').where(function(){
          this.where('username',"proba")
      })
       
      let membersOfFamiliesOfSpecifiedUser = []
      for(family of familyIdsofSpecifiedUser){
-        var membersOfSpecifiedFamily = yield Database.from('user_family').select('user_id').where(function(){
+        var membersOfSpecifiedFamily = yield Database.from('user_families').select('user_id').where(function(){
              this.where('family_id',family)
              membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
          })

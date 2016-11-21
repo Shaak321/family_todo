@@ -2,23 +2,21 @@
 
 const Schema = use('Schema')
 
-class FamilyTableSchema extends Schema {
+class FamiliesTableSchema extends Schema {
 
   up () {
-    this.create('family', (table) => {
+    this.create('families', (table) => {
       table.increments()
       table.string('name',100).notNullable()
       table.integer('admin_id').unsigned().references('id').inTable('users')
       table.timestamps()
-
-      //table.integer('user_id').unsigned().references('id').inTable('users')
     })
   }
 
   down () {
-    this.drop('family')
+    this.drop('families')
   }
 
 }
 
-module.exports = FamilyTableSchema
+module.exports = FamiliesTableSchema
