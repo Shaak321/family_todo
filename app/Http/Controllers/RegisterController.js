@@ -28,7 +28,7 @@ class RegisterController {
           pass2: req.input('password2')
         }
 
-        console.log(data);
+       
 
         const rules = {
           name: 'required|min:12',
@@ -43,7 +43,7 @@ class RegisterController {
 
         const validation = yield Validator.validateAll(data, rules)
         if(validation.fails()){
-            console.log(validation.messages())
+            
             yield req
                 .withAll()
                 .andWith({ errors: validation.messages() })
