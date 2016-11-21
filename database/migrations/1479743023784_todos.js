@@ -2,10 +2,10 @@
 
 const Schema = use('Schema')
 
-class TodoTableSchema extends Schema {
+class TodosTableSchema extends Schema {
 
   up () {
-    this.create('todo', (table) => {
+    this.create('todos', (table) => {
       table.increments()
       table.date('start').notNullable()
       table.date('end').notNullable()
@@ -18,9 +18,9 @@ class TodoTableSchema extends Schema {
   }
 
   down () {
-    this.drop('todo')
+    this.drop('todos')
   }
 
 }
 
-module.exports = TodoTableSchema
+module.exports = TodosTableSchema

@@ -25,4 +25,6 @@ Route.post('/logout', 'LoginController.logout')
 Route.get('/profile/:id','ProfileController.show')
 Route.get('/family/:id', 'FamilyController.get')
 Route.get('/todo/:id','TodoController.get')
+Route.get('/addTodo', 'TodoController.add')
+Route.post('/addTodo', 'TodoController.doAdd')
 

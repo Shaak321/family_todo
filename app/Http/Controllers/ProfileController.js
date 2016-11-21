@@ -2,7 +2,7 @@
 const Database = use('Database')
 const User = use('App/Model/User')
 const Family = use('App/Model/Family')
-const Todo = use('App/Model/Todo')
+const Todo = use('App/Model/Todos')
 class ProfileController {
  *show(req,res){
      if(req.currentUser){
@@ -31,11 +31,11 @@ class ProfileController {
       const specifiedUsername = yield Database.from('users').select('username').where(function(){
          this.where('id',userId)
      })
-
+     
      const familyIdsofSpecifiedUser = yield Database.from('user_family').select('family_id').where(function(){
          this.where('username',specifiedUsername)
      })
-
+     
      let membersOfFamiliesOfSpecifiedUser = []
      for(family of familyIdsofSpecifiedUser){
          membersOfSpecifiedFamily = yield Database.from('user_family').select('user_id').where(function(){
@@ -54,8 +54,8 @@ class ProfileController {
 
      var todos;
      const allMembersOfFamiliesOfSpecifiedUser = Database.from('user_family').select('user_id')
-     if(isCurrentUserPartOfTheSameFamilyAsSpecifiedUser){
-        todos = yield Database.from('todo').where('user_id',userId)
+     if( userId == currentUser.id || isCurrentUserPartOfTheSameFamilyAsSpecifiedUser){
+        todos = yield Database.from('todos').where('user_id',userId)
      }
      yield res.sendView('profile',{
             userInfo: userInfo,
