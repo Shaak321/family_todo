@@ -9,12 +9,15 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">Family todo</a>
+    {%if currentUser %}
      <ul class="nav navbar-nav">
       <li><a href="/addFamily">Create new family</a></li>
       <li><a href="/addTodo">Create new todo</a></li> 
       <li><a href="/my_families">My families</a></li> 
       <li><a href="/my_todos">My todos</a></li>
+      <li><a href="/modify_profile/{{currentUser.id}}">Edit profile</a></li>
     </ul>
+    {%endif%}
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -19,9 +19,11 @@
   		        <div class="panel-heading">
                    Members of {{familyInfo[0].name}} family
                 <div class="list-group">
+                {%if familyInfo[0].admin_id == currentUser.id %}
                     <a href="/family_delete/{{familyInfo[0].id}}">Delete</a>
                     <a href="/family_modify/{{familyInfo[0].id}}">Modify</a>
                     <a href="/add_family_member/{{familyInfo[0].id}}">Add member</a>
+                {%endif%}
                 </div>
                  <div class="list-group">Admin of the family: <a href="/profile/{{familyAdmin[0].id}}">{{familyAdmin[0].name}}</a></div>
                 </div>

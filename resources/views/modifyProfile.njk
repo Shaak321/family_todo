@@ -1,0 +1,61 @@
+{% extends 'index' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+
+        {% if modifyMessage %}
+          <div class="alert alert-info" role="alert">{{modifyMessage}}</div>
+        {% endif%}
+
+        {% if old('errors') %}
+          <div class="alert alert-danger" role="alert">
+              <ul>
+              {% for error in old('errors') %}
+              <li>{{ error.message }}</li>
+              {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+
+        <form class="form-horizontal" role="form" method="POST" action="/modify_profile/{{currentUser.id}}">
+
+          {{ csrfField }}
+
+          <div class="form-group">
+              <label for="FirstName">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Name" value={{user.name}}>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{user.email}}">
+          </div>
+           <div class="form-group">
+            <label for="Password1">Home</label>
+            <input type="text" class="form-control" id="home" name="home" placeholder="Home" value="{{user.home}}">
+          </div>
+           <div class="form-group">
+            <label for="Password1">Work place</label>
+            <input type="text" class="form-control" id="workplace" name="workplace" placeholder="Work place" value="{{user.workplace}}">
+          </div>
+           <div class="form-group">
+            <label for="Password1">Birth</label>
+            <input type="text" class="form-control" id="birth" name="birth" placeholder="Birth" value="{{user.birth}}">
+          </div>
+           <div class="form-group">
+            <label for="oldpass">Old password</label>
+            <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Old password">
+          </div>
+          <div class="form-group">
+            <label for="Password1">Password</label>
+            <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="Password">
+          </div>
+          <div class="form-group">
+              <label for="Password2">Re-enter Password</label>
+              <input type="password" class="form-control" id="new_password2" name="new_password2" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Modify profile</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

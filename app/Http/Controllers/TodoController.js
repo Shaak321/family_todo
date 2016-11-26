@@ -118,6 +118,7 @@ class TodoController {
                                 .flash()
 
                             res.redirect('/error')
+                            return
                     }
                 }
             }
@@ -164,12 +165,13 @@ class TodoController {
             var owner = {}
             var todo = {}
             if(ownerOfTodo[0].user_id == req.currentUser.id ||isCurrentUserPartOfTheSameFamilyAsTodosOwner ){
-                owner = yield Database.from('users').select('name').where(function(){
+                owner = yield Database.from('users').select('name','id').where(function(){
                     this.where('id',ownerOfTodo[0].user_id)
                 })
                 todo = yield Database.from('todos').where(function(){
                     this.where('id',todoId)
                 })
+                console.log(owner)
                yield res.sendView('todo',{
                     todo:todo,
                     owner:owner
@@ -237,6 +239,32 @@ class TodoController {
             yield res.sendView('add_todo')
         }
     }
+    *markAsComplete(req,res){
+        if(req.currentUser){
+            const todoId = req.param('id')
+            const todo = yield Todo.findBy('id',todoId)
+            if(todo.user_id == req.currentUser.id){
+                todo.iscompleted = true
+                yield todo.save()
+                yield req
+                                .withAll()
+                                .andWith({ messages: [{markAsCompleteMessage:'You successfully marked this todo as complete!'}] })
+                                .flash()
+                res.redirect('/todo/'+todoId)
+            }else{
+                 yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You can not mark this todo as completed"}] })
+                                .flash()
+
+                            res.redirect('/error')
+                            return
+            }
+        }
+    }
+
+
+
 }
 
 module.exports = TodoController

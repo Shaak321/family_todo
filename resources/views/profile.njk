@@ -43,6 +43,8 @@
                             <p class="list-group-item-text">{{userInfo[0].workplace}}</p>
                             <h4 class="list-group-item-heading">Birth date</h4>
                             <p class="list-group-item-text">{{userInfo[0].birth}}</p>
+                            {%if userInfo[0].id == currentUser.id%}
+                            {%endif%}
                     </div>
                     </ul>
   	          </div>

@@ -20,6 +20,9 @@
   <body>
     {%include 'navbar' %}
     {% block content %}
+      {% if modifyMessage %}
+          <div class="alert alert-info" role="alert">{{modifyMessage}}</div>
+        {% endif%}
     <div class="container-fluid">
     <h1>Haller</h1>
     </div>

@@ -39,7 +39,7 @@ class FamilyController {
             }
             
         if(memb.indexOf(req.currentUser.username)> -1){
-            const familyInfo = yield Database.from('families').select('name','id').where(function(){
+            const familyInfo = yield Database.from('families').select('name','id','admin_id').where(function(){
                 this.where('id',familyId)
             })
             const familyAdminId =  yield Database.from('families').select('admin_id').where(function(){

@@ -31,7 +31,7 @@ class RegisterController {
        
 
         const rules = {
-          name: 'required|min:12',
+          name: 'required|min:8',
           username:  'required|min:3',
           email: 'required|email',
           pass1: 'required|same:pass2',
