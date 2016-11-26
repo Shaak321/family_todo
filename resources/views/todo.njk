@@ -13,19 +13,19 @@
                     <ul class="list-group">
                     <div class="list-group">
                             <h4 class="list-group-item-heading">Start time</h4>
-                            <p class="list-group-item-text>{{todo.start}}</p>
+                            <p >{{todo[0].start}}</p>
                     </div>
                     <div class="list-group">
                             <h4 class="list-group-item-heading">End time</h4>
-                            <p class="list-group-item-text>{{todo.end}}</p>
+                            <p >{{todo[0].end}}</p>
                     </div>
                     <div class="list-group">
                             <h4 class="list-group-item-heading">Description</h4>
-                            <p class="list-group-item-text>{{todo.description}}</p>
+                            <p >{{todo[0].description}}</p>
                     </div>
                     <div class="list-group">
                             <h4 class="list-group-item-heading">Owner</h4>
-                            <p class="list-group-item-text><a href="/profile/{{todo.user_id}}">{{owner.name}}</a></p>
+                            <p ><a href="/profile/{{todo[0].user_id}}">{{owner[0].name}}</a></p>
                     </div>
                     </ul>
   	          </div>

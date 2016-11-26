@@ -3,34 +3,34 @@ const Database = use('Database')
 const Family = use('App/Model/Family')
 const Validator = use('Validator')
 const User_Family = use('App/Model/User_Family')
+const User = use('App/Model/User')
 class FamilyController {
     *get(req,res){
         if(req.currentUser){
         const familyId = req.param('id');
-        const familyInfo = yield Database.from('family').select('name').where(function(){
+        const familyInfo = yield Database.from('families').select('name').where(function(){
             this.where('id',familyId)
         })
-        const familyAdminId =  yield Database.from('family').select('admin_id').where(function(){
+        const familyAdminId =  yield Database.from('families').select('admin_id').where(function(){
             this.where('id',familyId)
         })
-        const familyAdmin = yield Database.from('users').select('name,id').where(function(){
-            this.where('id',familyAdminId)
+        const familyAdmin = yield Database.from('users').select('name','id').where(function(){
+            this.where('id',familyAdminId[0].admin_id)
         })
-        const familyMemberIds = yield Database.from('user_families').select('user_id').where(function(){
+        var familyMemberUsernames = yield Database.from('user_families').select('username').where(function(){
             this.where('family_id',familyId)
         })
-
+        
         let members = []
-        for(memberId of familyMemberIds){
-            const actualMember = Database.from('users').select('name,id').where(function(){
-            this.where('id',memberId)
-            members.push(actualMember)
+        for(let memberUsername of familyMemberUsernames){
+            var actualMember = yield Database.from('users').select('name','id').where(function(){
+            this.where('username',memberUsername.username) 
         })
-    }
+        members.push(actualMember)
+    }   
 
      yield res.sendView('family',{
             familyInfo: familyInfo,
-            familyAdminId: familyAdminId,
             familyAdmin: familyAdmin,
             members: members
 		})

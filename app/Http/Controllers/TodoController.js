@@ -12,36 +12,37 @@ class TodoController {
             })
            
             const ownerOfTodoUserName =  yield Database.from('users').select('username').where(function(){
-                this.where('id',ownerOfTodo)
+                this.where('id',ownerOfTodo[0].user_id)
             })
             
      //construct todo object
-    
-     const familyIdsofSpecifiedUser = yield Database.from('user_families').select('family_id').where(function(){
-         this.where('username',"proba")
-     })
-      
-     let membersOfFamiliesOfSpecifiedUser = []
-     for(family of familyIdsofSpecifiedUser){
-        var membersOfSpecifiedFamily = yield Database.from('user_families').select('user_id').where(function(){
-             this.where('family_id',family)
-             membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
-         })
-     }
-    
-     var isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = false;
-     for(actualMemberOfSpecifiedUsersFamilies of membersOfFamiliesOfSpecifiedUser){
-         if(actualMemberOfSpecifiedUsersFamilies == req.currentUser.id){
-             isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = true
-             break;
-         }
-     }
- 
+    //Construct isCurrentUserPartOfTheSameFamilyAsSpecifiedUser
+   
+        const familyIdsofSpecifiedUser = yield Database.from('user_families').select('family_id').where(function(){
+            this.where('username',ownerOfTodoUserName[0].username)
+        })
+        
+        let membersOfFamiliesOfSpecifiedUser = []
+        for(let family of familyIdsofSpecifiedUser){
+            var membersOfSpecifiedFamily = yield Database.from('user_families').select('username').where(function(){
+                this.where('family_id',family.family_id)
+            })
+            membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
+        }
+        var isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = false;
+        for(let actualMemberOfSpecifiedUsersFamilies of membersOfFamiliesOfSpecifiedUser){
+            if(actualMemberOfSpecifiedUsersFamilies[0].username == req.currentUser.username){
+                isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = true
+                break;
+            }
+        }
+       
+    //End-of-construct-isCurrentUserPartOfTheSameFamilyAsSpecifiedUser
             var owner = {}
             var todo = {}
-            if(ownerOfTodo == req.currentUser.id ||isCurrentUserPartOfTheSameFamilyAsSpecifiedUser ){
+            if(ownerOfTodo[0].user_id == req.currentUser.id ||isCurrentUserPartOfTheSameFamilyAsSpecifiedUser ){
                 owner = yield Database.from('users').select('name').where(function(){
-                    this.where('id',ownerOfTodo)
+                    this.where('id',ownerOfTodo[0].user_id)
                 })
                 todo = yield Database.from('todos').where(function(){
                     this.where('id',todoId)

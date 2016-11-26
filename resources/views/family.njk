@@ -3,18 +3,18 @@
 {% block content %}
 
 <div class="row">
-    <h2>Admin of the family: <a href="/profile/{{familyAdminId}}">{{familyAdmin.name}}</a><h2>
+    <h2>Admin of the family: <a href="/profile/{{familyAdmin[0].id}}">{{familyAdmin[0].name}}</a><h2>
     <div class="col-md-3 col-md-offset-1">
 
         <div class="panel panel-default">
   		        <div class="panel-heading">
-                   Members of {{familyInfo.name}} family
+                   Members of {{familyInfo[0].name}} family
                 </div>
   			  <div class="panel-body">
                     <ul class="list-group">
                     {% for member in members%}
                     <div class="list-group">
-                            <h4 class="list-group-item-heading"><a href="/profile/{{member.id}}">{{member.name}}</a></h4>
+                            <h4 class="list-group-item-heading"><a href="/profile/{{member[0].id}}">{{member[0].name}}</a></h4>
                     </div>
                     {%endfor%}
                     </ul>
