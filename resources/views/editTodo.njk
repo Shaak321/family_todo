@@ -1,0 +1,54 @@
+{% extends 'index' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+
+        {% if ModifyTodoMessage %}
+          <div class="alert alert-info" role="alert">{{ModifyTodoMessage}}</div>
+        {% endif%}
+
+        {% if old('errors') %}
+          <div class="alert alert-danger" role="alert">
+              <ul>
+              {% for error in old('errors') %}
+              <li>{{ error.message }}</li>
+              {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+
+        <form class="form-horizontal" role="form" method="POST" action="/modify/todo/{{todo.id}}">
+
+          {{ csrfField }}
+
+          <div class="form-group">
+              <label for="name">Todo name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Todo name" value="{{todo.name}}"/>
+          </div>
+          
+          <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{todo.description}}">
+          </div>
+          <div class="form-group">
+            <label for="start">Start time</label>
+            <input type="text" class="form-control" id="start" name="start" placeholder="Start" value="{{todo.start}}">
+          </div>
+           <div class="form-group">
+            <label for="end">End time</label>
+            <input type="text" class="form-control" id="end" name="end" placeholder="End time" value="{{todo.end}}">
+          </div>
+          <div class="form-group">
+            <label for="end">Completed</label>
+        {% if todo.iscompleted %}
+            <input type="checkbox" class="form-control" id="iscompleted" name="iscompleted" checked>
+            {%else %}
+            <input type="checkbox" class="form-control" id="iscompleted" name="iscompleted">
+        {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary">Modify</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -20,9 +20,77 @@ class TodoController {
         }
 
     }
+    *modify(req,res){
+          const todoId = req.param('id')
+       
+        if(req.currentUser){
+        let todo = yield Todo.find(todoId)
+        if(todo){
+            if(todo.user_id == req.currentUser.id){
+                    yield res.sendView('editTodo',{
+                        todo:todo
+                    })
+                }else{
+                    yield res.sendView('error')
+                }
+            }
+        }
+    }
 
+    *doModify(req,res){
+            const todoId = req.param('id')
+        
+            if(req.currentUser){
+            let todo = yield Todo.find(todoId)
+            if(todo){
+                if(todo.user_id == req.currentUser.id){
+                         var ModifyTodoMessage = {
+            success: 'Whoooooo! You have just modified your todo!',
+        }
+        const data = {
+          name: req.input('name'),
+          description:  req.input('description'),
+          start: req.input('start'),
+          end: req.input('end'),
+          iscompleted: req.input('iscompleted')
+        }
+        const rules = {
+          name: 'required|min:5', 
+          description:  'required|min:10',
+          start: 'required', //Add custrom rule
+          end: 'required',  //Add custom rule
+        }
+         const validation = yield Validator.validateAll(data, rules)
+        if(validation.fails()){
+            yield req
+                .withAll()
+                .andWith({ errors: validation.messages() })
+                .flash()
+            res.redirect('/modify/todo/'+todoId)
+            return
+        }
+        todo.name = data.name
+        todo.description = data.description
+        todo.start = data.start
+        todo.end = data.end
+        todo.user_id = req.currentUser.id
+        if(data.iscompleted){
+            console.log('TRUE')
+            todo.iscompleted = true
+        }else{
+            console.log('FALSE')
+            todo.iscompleted = false
+        }
+        console.log(todo.iscompleted)
+        yield todo.save()
 
-
+                yield res.sendView('editTodo', { ModifyTodoMessage : ModifyTodoMessage.success ,todo:todo})
+                    }else{
+                        yield res.sendView('error')
+                    }
+                }
+            }
+        }
 
     *get(req,res){
         if(req.currentUser){
