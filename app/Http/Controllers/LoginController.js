@@ -1,11 +1,11 @@
 'use strict'
 
 class LoginController {
-* login(req, res){
+*login(req, res){
         yield res.sendView('login')
     }
 
-    * doLogin(req, res){
+    *doLogin(req, res){
         const username = req.input('username')
         const password = req.input('password')
 
