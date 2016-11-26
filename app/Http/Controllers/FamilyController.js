@@ -5,6 +5,28 @@ const Validator = use('Validator')
 const User_Family = use('App/Model/User_Family')
 const User = use('App/Model/User')
 class FamilyController {
+    *getAll(req,res){
+        if(req.currentUser){
+            let familiesById = yield Database.from('user_families').select('family_id').where(function(){
+                this.where('username',req.currentUser.username)
+            })
+            
+            let myfamilies = []
+            for(let fbi of familiesById){
+                var actualFamily = yield Database.from('families').select('name','id').where(function(){
+                this.where('id',fbi.family_id)
+                })
+                myfamilies.push(actualFamily)
+            }
+            
+            yield res.sendView('myFamilies',{
+                myfamilies:myfamilies
+            })
+        }
+    }
+
+
+
     *get(req,res){
         if(req.currentUser){
             const familyId = req.param('id');
