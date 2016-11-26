@@ -3,6 +3,27 @@ const Database = use('Database')
 const Todo = use('App/Model/Todos')
 const Validator = use('Validator')
 class TodoController {
+    *delete(req,res){
+        const todoId = req.param('id')
+        let ownerOfTodo = yield Database.from('todos').select('user_id').where(function(){
+            this.where('id',todoId)
+        })
+        
+        if(req.currentUser){
+            if(ownerOfTodo[0].user_id == req.currentUser.id){
+                const todoToDelete = yield Todo.find(todoId)
+                yield todoToDelete.delete()
+                yield res.sendView('index')
+            }else{
+                yield res.sendView('error')
+            }
+        }
+
+    }
+
+
+
+
     *get(req,res){
         if(req.currentUser){
             const todoId = req.param('id');
