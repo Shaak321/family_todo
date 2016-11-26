@@ -193,8 +193,8 @@ class ProfileController {
                             yield Database.from('todos').delete().where(function(){
                                 this.where('user_id',user.id)
                             })
-                            user.delete()
-                            yield res.redirect('/logout')
+                            yield user.delete()
+                            yield res.redirect('/')
                         }else{
                             yield req
                                     .withAll()
