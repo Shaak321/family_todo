@@ -1,0 +1,33 @@
+{% extends 'index' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+
+        {% if modifyFamilyMessage %}
+          <div class="alert alert-info" role="alert">{{modifyFamilyMessage}}</div>
+        {% endif%}
+
+        {% if old('errors') %}
+          <div class="alert alert-danger" role="alert">
+              <ul>
+              {% for error in old('errors') %}
+              <li>{{ error.message }}</li>
+              {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+
+        <form class="form-horizontal" role="form" method="POST" action="/family_modify/{{family.id}}">
+
+          {{ csrfField }}
+
+          <div class="form-group">
+              <label for="name">Family name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Family name" value="{{family.name}}">
+          </div>
+          <button type="submit" class="btn btn-primary">Modify</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
