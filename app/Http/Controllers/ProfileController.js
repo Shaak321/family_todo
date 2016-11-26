@@ -46,17 +46,19 @@ class ProfileController {
             })
             membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
         }
-        var isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = false;
+        var isCurrentUserPartOfTheSameFamilyAsTodosOwner = false;
         for(let actualMemberOfSpecifiedUsersFamilies of membersOfFamiliesOfSpecifiedUser){
-            if(actualMemberOfSpecifiedUsersFamilies[0].username == req.currentUser.username){
-                isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = true
-                break;
+              for(let membersOfParticularFamily of actualMemberOfSpecifiedUsersFamilies){
+                if(membersOfParticularFamily.username == req.currentUser.username){
+                    isCurrentUserPartOfTheSameFamilyAsTodosOwner = true
+                    break;
+                }
             }
         }
        
   //End of Construct of isCurrentUserPartOfTheSameFamilyAsSpecifiedUser
      var todos;
-     if( userId == currentUser.id || isCurrentUserPartOfTheSameFamilyAsSpecifiedUser){
+     if( userId == currentUser.id || isCurrentUserPartOfTheSameFamilyAsTodosOwner){
         todos = yield Database.from('todos').where('user_id',userId)
      }
      yield res.sendView('profile',{

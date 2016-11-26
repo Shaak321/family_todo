@@ -65,9 +65,17 @@ class FamilyController {
                 familyAdmin: familyAdmin,
                 members: members
             })
+    }else{
+        
+                 yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You are not part of this family"}] })
+                                .flash()
+
+                            res.redirect('/error')
     }
   }else{
-     res.sendView('register') 
+     yield res.sendView('register') 
   }
 }
 
@@ -125,6 +133,13 @@ class FamilyController {
                })
                yield family.delete()
                yield res.sendView('index')
+            }else{
+                  yield req
+                            .withAll()
+                            .andWith({ errors: [{message: 'You can not delete this family, you are not the administrator.'}] })
+                            .flash()
+                        res.redirect('/family/'+familyId)
+                        return
             }
         }else{
             yield res.sendView('register')
@@ -140,6 +155,13 @@ class FamilyController {
                 yield res.sendView('editFamily',{
                     family:family
                 })
+            }else{
+                yield req
+                            .withAll()
+                            .andWith({ errors: [{message: 'You can not modify this family, you are not the administrator.'}] })
+                            .flash()
+                        res.redirect('/family/'+familyId)
+                        return
             }
         }else{
             yield res.sendView('register')
@@ -259,7 +281,12 @@ class FamilyController {
                         }
              }else{
                  
-                 yield res.sendView('error')
+                 yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You are not part of this family"}] })
+                                .flash()
+
+                            res.redirect('/error')
              }
         }else{
             yield res.sendView('register')

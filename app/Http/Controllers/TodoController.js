@@ -15,11 +15,32 @@ class TodoController {
                 yield todoToDelete.delete()
                 yield res.sendView('index')
             }else{
-                yield res.sendView('error')
+                
+                 yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You can not delete this todo"}] })
+                                .flash()
+
+                            res.redirect('/error')
             }
         }
 
     }
+    *getAll(req,res){
+        if(req.currentUser){
+            let myTodos = yield Database.from('todos').select('name','id').where(function(){
+                this.where('user_id',req.currentUser.id)
+            })
+            console.log(myTodos)
+            yield res.sendView('myTodos',{
+                myTodos:myTodos
+            })
+        }else{
+            yield res.sendView('register')
+        }
+    }
+
+
     *modify(req,res){
           const todoId = req.param('id')
        
@@ -31,7 +52,12 @@ class TodoController {
                         todo:todo
                     })
                 }else{
-                    yield res.sendView('error')
+                     yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You can not edit this todo"}] })
+                                .flash()
+
+                            res.redirect('/error')
                 }
             }
         }
@@ -86,7 +112,12 @@ class TodoController {
 
                 yield res.sendView('editTodo', { ModifyTodoMessage : ModifyTodoMessage.success ,todo:todo})
                     }else{
-                        yield res.sendView('error')
+                        yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You can not edit this todo"}] })
+                                .flash()
+
+                            res.redirect('/error')
                     }
                 }
             }
@@ -110,7 +141,7 @@ class TodoController {
         const familyIdsofSpecifiedUser = yield Database.from('user_families').select('family_id').where(function(){
             this.where('username',ownerOfTodoUserName[0].username)
         })
-        
+        console.log(familyIdsofSpecifiedUser)
         let membersOfFamiliesOfSpecifiedUser = []
         for(let family of familyIdsofSpecifiedUser){
             var membersOfSpecifiedFamily = yield Database.from('user_families').select('username').where(function(){
@@ -118,18 +149,21 @@ class TodoController {
             })
             membersOfFamiliesOfSpecifiedUser.push(membersOfSpecifiedFamily)
         }
-        var isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = false;
+        console.log(membersOfFamiliesOfSpecifiedUser)
+        var isCurrentUserPartOfTheSameFamilyAsTodosOwner = false;
         for(let actualMemberOfSpecifiedUsersFamilies of membersOfFamiliesOfSpecifiedUser){
-            if(actualMemberOfSpecifiedUsersFamilies[0].username == req.currentUser.username){
-                isCurrentUserPartOfTheSameFamilyAsSpecifiedUser = true
-                break;
+            for(let membersOfParticularFamily of actualMemberOfSpecifiedUsersFamilies){
+                if(membersOfParticularFamily.username == req.currentUser.username){
+                    isCurrentUserPartOfTheSameFamilyAsTodosOwner = true
+                    break;
+                }
             }
         }
-       
+       console.log(isCurrentUserPartOfTheSameFamilyAsTodosOwner)
     //End-of-construct-isCurrentUserPartOfTheSameFamilyAsSpecifiedUser
             var owner = {}
             var todo = {}
-            if(ownerOfTodo[0].user_id == req.currentUser.id ||isCurrentUserPartOfTheSameFamilyAsSpecifiedUser ){
+            if(ownerOfTodo[0].user_id == req.currentUser.id ||isCurrentUserPartOfTheSameFamilyAsTodosOwner ){
                 owner = yield Database.from('users').select('name').where(function(){
                     this.where('id',ownerOfTodo[0].user_id)
                 })
