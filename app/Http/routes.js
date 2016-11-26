@@ -44,3 +44,4 @@ Route.get('/mark_todo_as_complete/:id','TodoController.markAsComplete').middlewa
 Route.get('/modify_profile/:id','ProfileController.modify').middleware('author')
 Route.post('/modify_profile/:id','ProfileController.doModify').middleware('author')
 Route.get('/delete_profile/:id','ProfileController.delete').middleware('author')
+Route.get('/delete_member/:family_id/:username','FamilyController.deleteMember').middleware('author')

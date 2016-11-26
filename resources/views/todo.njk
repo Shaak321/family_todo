@@ -36,17 +36,19 @@
                     </ul>
   	          </div>
                      <div class="list-group">
+                     
                              {% if owner[0].id == currentUser.id%}
-                            <p ><a href="/delete/todo/{{todo[0].id}}">delete</a></p>
-                             <p ><a href="/modify/todo/{{todo[0].id}}">Modify</a></p>
+                             
+                            <a class="btn btn-primary" href="/delete/todo/{{todo[0].id}}">delete</a>
+                            <a class="btn btn-primary" href="/modify/todo/{{todo[0].id}}">Modify</a>
                             
                                 {% if todo[0].iscompleted %}
-
                                         <p>Completed, use modify to reopen.</p>
                                 {%else%}
-                                        <p><a href="/mark_todo_as_complete/{{todo[0].id}}">Mark as complete</a></p>
+                                        <a class="btn btn-primary" href="/mark_todo_as_complete/{{todo[0].id}}">Mark as complete</a>
                                 {%endif%}
                              {%endif%}
+                    
                     </div>
   		</div>
     </div>

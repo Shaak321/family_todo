@@ -54,7 +54,7 @@ class FamilyController {
             
             let members = []
             for(let memberUsername of familyMemberUsernames){
-                var actualMember = yield Database.from('users').select('name','id').where(function(){
+                var actualMember = yield Database.from('users').select('username','name','id').where(function(){
                 this.where('username',memberUsername.username) 
             })
             members.push(actualMember)
@@ -292,6 +292,48 @@ class FamilyController {
             yield res.sendView('register')
         }
     }
+
+    *deleteMember(req,res){
+        if(req.currentUser){
+            const userToDelete = req.param('username')
+            const familyId = req.param('family_id')
+            const adminIdOfFamily = (yield Family.findBy('id',familyId)).admin_id
+            if(req.currentUser.id == adminIdOfFamily){
+                if(!(yield Database.from('user_families').delete().where(function(){
+                    this.where('username',userToDelete)
+                }))){
+                     yield req
+                                .withAll()
+                                .andWith({ messages: [{deleteMemberMessage: "No such user"}] })
+                                .flash()
+
+                            res.redirect('/error')
+                            return
+                }
+                 yield req
+                                .withAll()
+                                .andWith({ messages: [{deleteMemberMessage: "Successfull member deletion"}] })
+                                .flash()
+
+                            res.redirect('/family/'+familyId)
+                            return
+            }else{
+                 yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "You can not delete members from this family"}] })
+                                .flash()
+
+                            res.redirect('/error')
+                            return
+            }
+
+
+        }
+    }
+
+
+
+
 }
 
 module.exports = FamilyController
