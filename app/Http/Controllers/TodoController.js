@@ -10,6 +10,7 @@ class TodoController {
         })
         
         if(req.currentUser){
+          if(ownerOfTodo[0]){  
             if(ownerOfTodo[0].user_id == req.currentUser.id){
                 const todoToDelete = yield Todo.find(todoId)
                 yield todoToDelete.delete()
@@ -23,7 +24,15 @@ class TodoController {
 
                             res.redirect('/error')
             }
+        }else{
+        yield req
+                                .withAll()
+                                .andWith({ errors: [{message: "No such todo id"}] })
+                                .flash()
+
+                            res.redirect('/error')
         }
+    }
 
     }
     *getAll(req,res){
@@ -262,9 +271,29 @@ class TodoController {
             }
         }
     }
-
-
-
+*ajaxDelete(req,res){
+        const todoId = req.param('id')
+        let ownerOfTodo = yield Database.from('todos').select('user_id').where(function(){
+            this.where('id',todoId)
+        })
+        
+        if(req.currentUser){
+            if(ownerOfTodo[0]){
+                    if(ownerOfTodo[0].user_id == req.currentUser.id){
+                        const todoToDelete = yield Todo.find(todoId)
+                        yield todoToDelete.delete()
+                        res.ok({success: true})
+                    }else{
+                        res.ok({success: false})
+                    }
+                }else{
+                res.ok({success: false})
+            }
+        }else{
+            res.ok({success: false})
+        }
+    }
+    
 }
 
 module.exports = TodoController

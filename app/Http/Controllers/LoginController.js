@@ -36,6 +36,17 @@ class LoginController {
         return response.redirect('/')
     }
 
+
+    *ajaxLogin(req, res){
+        const username = req.input('username')
+        const password = req.input('password')
+        try {
+            yield req.auth.attempt(username, password)
+            res.ok({ success: true })
+        } catch (ex) {
+            res.ok({ success: false })
+        }
+    }
 }
 
 module.exports = LoginController

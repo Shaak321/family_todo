@@ -39,7 +39,7 @@
                      
                              {% if owner[0].id == currentUser.id%}
                              
-                            <a class="btn btn-primary" href="/delete/todo/{{todo[0].id}}">delete</a>
+                            <a id="delete" class="btn btn-primary" href="/delete/todo/{{todo[0].id}}">delete</a>
                             <a class="btn btn-primary" href="/modify/todo/{{todo[0].id}}">Modify</a>
                             
                                 {% if todo[0].iscompleted %}

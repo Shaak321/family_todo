@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default">
+
+<nav class="navbar navbar-default" onload="startTime()">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -11,11 +12,12 @@
       <a class="navbar-brand" href="/">Family todo</a>
     {%if currentUser %}
      <ul class="nav navbar-nav">
-      <li><a href="/addFamily">Create new family</a></li>
+      <li><a href="/addFamily" data-toggle="tooltip" title="Hoorayy">Create new family</a></li>
       <li><a href="/addTodo">Create new todo</a></li> 
       <li><a href="/my_families">My families</a></li> 
       <li><a href="/my_todos">My todos</a></li>
       <li><a href="/modify_profile/{{currentUser.id}}">Edit profile</a></li>
+     
     </ul>
     {%endif%}
     </div>
@@ -25,17 +27,25 @@
       
       <ul class="nav navbar-nav navbar-right">
         {% if currentUser %}
+           <div id="txt"></div>
             <div>Hello, <a href="/profile/{{currentUser.id}}">{{currentUser.username}}</a> </div>
+             
               <form class="form-horizontal" action="/logout" method="POST">
                 {{ csrfField }}
               <button type="submit" class="btn btn-danger">Sign out</button>
             </form>
 
         {% else %}
-            <li><a href="/login">Sign in</a></li>
-            <li><a href="/register">Sign up</a></li>
+            <a id="login" href="/login">Sign in</a>
+            <a id="logout" href="/register">Sign up</a>
         {% endif%}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+        });
+  </script>
+
 </nav>

@@ -45,3 +45,7 @@ Route.get('/modify_profile/:id','ProfileController.modify').middleware('author')
 Route.post('/modify_profile/:id','ProfileController.doModify').middleware('author')
 Route.get('/delete_profile/:id','ProfileController.delete').middleware('author')
 Route.get('/delete_member/:family_id/:username','FamilyController.deleteMember').middleware('author')
+Route.group('ajax', function() {
+  Route.post('/login', 'LoginController.ajaxLogin')
+  Route.get('/delete/todo/:id','TodoController.ajaxDelete').middleware('author')
+}).prefix('/ajax')
