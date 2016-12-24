@@ -331,9 +331,24 @@ class FamilyController {
         }
     }
 
-
-
-
+  *ajaxDelete(req,res){
+        if(req.currentUser){
+            let familyId = req.param('id')
+            let family = yield Family.findBy('id',familyId)
+            let AdminOfFamily = yield User.findBy('id',family.admin_id)
+            if(AdminOfFamily.username == req.currentUser.username){
+               yield Database.from('user_families').delete().where(function(){
+                   this.where('family_id',familyId)
+               })
+               yield family.delete()
+               res.ok({success: true})
+            }else{
+                res.ok({success: false})
+            }
+        }else{
+            res.ok({success: false})
+        }
+    }
 }
 
 module.exports = FamilyController

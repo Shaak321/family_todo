@@ -48,4 +48,5 @@ Route.get('/delete_member/:family_id/:username','FamilyController.deleteMember')
 Route.group('ajax', function() {
   Route.post('/login', 'LoginController.ajaxLogin')
   Route.get('/delete/todo/:id','TodoController.ajaxDelete').middleware('author')
+  Route.get('/family_delete/:id','FamilyController.ajaxDelete').middleware('author')
 }).prefix('/ajax')

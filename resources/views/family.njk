@@ -24,8 +24,7 @@
         {% endif %}
         <div class="panel panel-default">
   		        <div class="panel-heading">
-                   Members of {{familyInfo[0].name}} family
-               
+                   Family: {{familyInfo[0].name}} 
                 {%if currentUser.id != familyAdmin[0].id%}
                  <div class="list-group">Admin of the family: <a href="/profile/{{familyAdmin[0].id}}">{{familyAdmin[0].name}}</a></div>
                  {%else%}
@@ -33,7 +32,7 @@
                  {%endif%}
                   <div class="list-group">
                 {%if familyInfo[0].admin_id == currentUser.id %}
-                    <a class="btn btn-primary" href="/family_delete/{{familyInfo[0].id}}">Delete</a>
+                    <a id="delete_family" class="btn btn-primary" href="/family_delete/{{familyInfo[0].id}}">Delete</a>
                     <a class="btn btn-primary" href="/family_modify/{{familyInfo[0].id}}">Modify</a>
                     <a class="btn btn-primary" href="/add_family_member/{{familyInfo[0].id}}">Add member</a>
                 {%endif%}
