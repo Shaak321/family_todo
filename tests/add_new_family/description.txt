@@ -1,0 +1,1 @@
+A felhasználó bejelentkezik, majd hozzá ad egy új családot, ezután a My families fülön validálja, hogy valóban létrejött a család, majd kijelentkezik.
