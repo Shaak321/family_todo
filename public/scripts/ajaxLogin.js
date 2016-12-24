@@ -34,9 +34,10 @@ $(document).ready(function() {
               })
               .done(function(json) {
                 if (json.success) {
-                     $('.navbar').load('/ .navbar .container-fluid', function () {
+                     /*$('.navbar').load('/ .navbar .container-fluid', function () {
                          $modal_view.modal('hide')
-                     })
+                     })*/
+                     location.assign('/')
                 } else {
                   $error.show()
                 }
