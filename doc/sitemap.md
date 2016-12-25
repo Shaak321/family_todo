@@ -2,40 +2,22 @@
 
   * Public
     * Homepage
-    * Login
+      * Login
   * Registered user
     * Homepage
     * Login/Logout
-    * My account
+    * My profile
       * Edit informations
-      * Delete myself
     * My families
-      * List families
-          * Edit family (if family or global administrator)
-          * Delete family (if family or global administrator)
-          * Family details
+        * Edit family (if family member )
+        * Delete family (if family admin )
+        * Family details
             * Show family infos
             * List members
               * Show TODO list of members
-      * Add family
-    * Manage TODO's
-      * Create TODO
+    * Create new family
+    * My todos
       * List TODO's
-      * TODO detailsblank
+      * TODO details
       * Edit TODO's
-  * Global administrator
-    * Homepage
-    * Login/Logout
-    * My account
-      * Edit informations
-    * List all user
-      * Delete user
-      * Edit user informations
-    * List all families
-      * Edit family
-        * Edit family name
-        * Delete member
-      * Delete family
-    * List all TODO's
-      * Edit TODO's
-      * Delete TODO's
+    * Create new Todo

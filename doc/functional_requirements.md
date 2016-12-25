@@ -8,9 +8,7 @@
     * For registration you can use username and password of your heart's content,  
     but the username must be unique.
   * Managing your account
-  * Add yourself to a family
-    * To add yourself to a family you need the family's unique identifier, which is handed to you by the family administrator.
-    * Delete yourself
+  * Add somebody to a family, you have to know his/her username, and by that, you can add him/her to your family.
     * Edit your personal information:
       * Name
       * Phone number
@@ -22,8 +20,8 @@
       * Add todo
         * Add start time
         * Add end time
-        * Add activity name
-        * Add activity description
+        * Add todo name
+        * Add todo description
         * Add location
         * Manage lifecycle (Completed or not)
       * Edit your todo's
@@ -35,7 +33,5 @@
   * Managing your family
       * Add new members by sharing the unique code of your family to the person you want to add.
       * Delete members
-      * Delete family
-      * Rename family
+      * Delete
   * View the todo's of your family members
-  * We provide a global system administrator user who is capable of change everything on the site, i.e: accounts, todo's, etc...
