@@ -17,6 +17,6 @@
   * [Wire frames](blank)
   * Architecture design
     * [Site map](doc/sitemap.md)
-    * [End points](http://people.inf.elte.hu/szguaai/alkfejl/familyTodo.html)
+    * [End points](doc/end_points.md)
   * [Database design](doc/database_design.md)
   * [Renderings](blank)
