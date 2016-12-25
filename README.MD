@@ -10,11 +10,8 @@
     * [Non-functional](doc/non_functional_requirements.md)
     * [Glossary](doc/glossary.md)
     * [Usage model](doc/usage_model.md)
-  * Roles, uses cases, processes
-    * [Roles](blank)
-    * [Use cases](blank)
-    * [Processes](blank)
-  * [Wire frames](blank)
+  * Implementation
+    * [Developer enviroment](doc/de.md)
   * Architecture design
     * [Site map](doc/sitemap.md)
     * [End points](doc/end_points.md)
