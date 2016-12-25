@@ -1,0 +1,81 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                    My families
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    {% for family in families%}
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading"><a href="/family/{{family.id}}">{{family.name}}</a></h4>
+                    </div>
+                    {%endfor%}
+                    </ul>
+  	          </div>
+  		</div>
+
+
+    </div>
+
+ <div class="col-md-3 col-md-offset-1">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                  Personal info
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">User name</h4>
+                            <p class="list-group-item-text">{{userInfo[0].username}}</p>
+                            <h4 class="list-group-item-heading">Email</h4>
+                            <p class="list-group-item-text">{{userInfo[0].email}}</p>
+                            <h4 class="list-group-item-heading">Home</h4>
+                            <p class="list-group-item-text">{{userInfo[0].home}}</p>
+                            <h4 class="list-group-item-heading">Work place</h4>
+                            <p class="list-group-item-text">{{userInfo[0].workplace}}</p>
+                            <h4 class="list-group-item-heading">Birth date</h4>
+                            <p class="list-group-item-text">{{userInfo[0].birth}}</p>
+                            {%if userInfo[0].id == currentUser.id%}
+                                <a href="/delete_profile/{{currentUser.id}}">Delete profile</a>
+                            {%endif%}
+                    </div>
+                    </ul>
+  	          </div>
+  		</div>
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                    Todos
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    {% for todo in todos%}
+                    <div class="list-group">
+                        <a href="/todo/{{todo.id}}" class="list-group-item">
+                            <p class="list-group-item-text">{{todo.name}}</p>
+                        </a>
+                    </div>
+                    {%endfor%}
+                    </ul>
+  	          </div>
+  		</div>
+
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

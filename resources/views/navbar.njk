@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Family todo</a>
+    {%if currentUser %}
+     <ul class="nav navbar-nav">
+      <li><a href="/addFamily" data-toggle="tooltip" title="Create a new family, with given name">Create new family</a></li>
+      <li><a href="/addTodo" data-toggle="tooltip" title="Create a new todo">Create new todo</a></li> 
+      <li><a href="/my_families" data-toggle="tooltip" title="List all of your families, including, ones that you administrate, and ones, that you are part of.">My families</a></li> 
+      <li><a href="/my_todos" data-toggle="tooltip" title="List all of your todos">My todos</a></li>
+      <li><a href="/modify_profile/{{currentUser.id}}" data-toggle="tooltip" title="You can edit your profile informations (including your password) here">Edit profile</a></li>
+     
+    </ul>
+    {%endif%}
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <ul class="nav navbar-nav navbar-right">
+        {% if currentUser %}
+           <div id="txt"></div>
+            <div>Hello, <a href="/profile/{{currentUser.id}}">{{currentUser.username}}</a> </div>
+             
+              <form class="form-horizontal" action="/logout" method="POST">
+                {{ csrfField }}
+              <button type="submit" class="btn btn-danger">Sign out</button>
+            </form>
+
+        {% else %}
+            <li><a id="login" href="/login">Sign in</a></li>
+            <li><a id="logout" href="/register">Sign up</a></li>
+        {% endif%}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+        });
+  </script>
+
+</nav>

@@ -1,0 +1,15 @@
+{
+    "sqlite3": {
+        "database": "development",
+        "user": "gergo",
+        "password": "gergo"
+    },
+    "server": {
+        "port": 4444
+    },
+    "app": {
+        "layouts": true,
+        "themes": true,
+        "languages": true
+    }
+}

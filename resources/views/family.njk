@@ -1,0 +1,62 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+    
+   
+    <div class="col-md-3 col-md-offset-1">
+    {% if old('messages') %}
+          <div class="alert alert-info" role="alert">
+                 {% for message in old('messages') %}
+              <li>{{ message.deleteMemberMessage }}</li>
+              {% endfor %}
+          </div>
+        {% endif%}
+     {% if old('errors') %}
+          <div class="alert alert-danger" role="alert">
+              <ul>
+              {% for error in old('errors') %}
+              <li>{{ error.message }}</li>
+              {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                   Family: {{familyInfo[0].name}} 
+                {%if currentUser.id != familyAdmin[0].id%}
+                 <div class="list-group">Admin of the family: <a href="/profile/{{familyAdmin[0].id}}">{{familyAdmin[0].name}}</a></div>
+                 {%else%}
+                 <div class="list-group">You are the administrator of this family.</div>
+                 {%endif%}
+                  <div class="list-group">
+                {%if familyInfo[0].admin_id == currentUser.id %}
+                    <a id="delete_family" class="btn btn-primary" href="/family_delete/{{familyInfo[0].id}}">Delete</a>
+                    <a class="btn btn-primary" href="/family_modify/{{familyInfo[0].id}}">Modify</a>
+                    <a class="btn btn-primary" href="/add_family_member/{{familyInfo[0].id}}">Add member</a>
+                {%endif%}
+                </div>
+                </div>
+  			  <div class="panel-body">
+                
+                    <div>Members:</div>
+                    <ul class="list-group">
+                    {% for member in members%}
+                    <div class="list-group">
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="/profile/{{member[0].id}}">{{member[0].name}}</a>
+                                {%if familyAdmin[0].id == currentUser.id%}
+                                {%if familyAdmin[0].id != member[0].id%}
+                                    <a class= "btn btn-default" href="/delete_member/{{familyInfo[0].id}}/{{member[0].username}}">Delete</a>
+                                {%endif%}
+                                {%endif%}
+                            </div>
+                    </div>
+                    {%endfor%}
+                    </ul>
+  	          </div>
+  		</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'index' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+     {% if old('messages') %}
+          <div class="alert alert-info" role="alert">
+                 {% for message in old('messages') %}
+              <li>{{ message.markAsCompleteMessage }}</li>
+              {% endfor %}
+          </div>
+        {% endif%}
+        <div class="panel panel-default">
+  		        <div class="panel-heading">
+                   {{todo[0].name}}
+                </div>
+  			  <div class="panel-body">
+                    <ul class="list-group">
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Start time</h4>
+                            <p >{{todo[0].start}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">End time</h4>
+                            <p >{{todo[0].end}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Description</h4>
+                            <p >{{todo[0].description}}</p>
+                    </div>
+                    <div class="list-group">
+                            <h4 class="list-group-item-heading">Owner</h4>
+                            <p ><a href="/profile/{{todo[0].user_id}}">{{owner[0].name}}</a></p>
+                    </div>
+                    </ul>
+  	          </div>
+                     <div class="list-group">
+                     
+                             {% if owner[0].id == currentUser.id%}
+                             
+                            <a id="delete" class="btn btn-primary" href="/delete/todo/{{todo[0].id}}">delete</a>
+                            <a class="btn btn-primary" href="/modify/todo/{{todo[0].id}}">Modify</a>
+                            
+                                {% if todo[0].iscompleted %}
+                                        <p>Completed, use modify to reopen.</p>
+                                {%else%}
+                                        <a class="btn btn-primary" href="/mark_todo_as_complete/{{todo[0].id}}">Mark as complete</a>
+                                {%endif%}
+                             {%endif%}
+                    
+                    </div>
+  		</div>
+    </div>
+</div>
+{% endblock %}
