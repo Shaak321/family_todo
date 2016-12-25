@@ -1,1 +1,125 @@
 # Directory map
+
+*  /ace
+*  /app
+     *  /Commands
+          * Greet.js
+     *  /Http
+          *  /Controllers
+               *  ErrorController.js
+               *  FamilyController.js
+               *  LoginController.js
+               *  MainController.js
+               *  ProfileController.js
+               *  RegisterController.js
+               * TodoController.js
+          *  kernel.js
+          *  /Middleware
+               *  Authentication.js
+               *  Authorization.js
+          * routes.js
+     *  /Listeners
+           *    Http.js
+     *  /Model
+         *  Family.js
+         *  Hooks
+         *  Todos.js
+         *  Token.js
+         *  User_Family.js
+         *  User.js
+*     /bootstrap
+*     CHANGELOG.md
+*     /config
+*     config.json
+*     custom.json
+*     /database
+     *  development.sqlite
+     *  factory.js
+     *  /migrations
+          *  1479145701435_create_users_table.js
+          *  1479145701438_create_tokens_table.js
+          *  1479743023784_todos.js
+          *  1479744075422_families.js
+          *    1479745191399_user_families.js
+      * /seeds
+          *    Database.js
+*     /doc
+     *  bib.md
+     *  client_side_javascript_impl.md
+     *  database_design.md
+     *  de.md
+     *  directory_map.md
+     *  end_points.md
+     *  functional_requirements.md
+     *  glossary.md
+     *  /img
+          *  create_todo.png
+          *  database.png
+          *  edit_profile.png
+          *  family_creation.png
+          *  homepage.png
+          *  logged_in_screen.png
+          *  login_screen.png
+          *  my_families.png
+          *  my_todos.png
+          *  usecase.png
+     *  non_functional_requirements.md
+     *  renderings.md
+     *  sitemap.md
+     *  tests.md
+     *  usage_model.md
+      * /user
+          *    usage_and_req.md
+*     /node_modules
+*     package.json
+*     /providers
+*     /public
+     *  /assets
+     *  /scripts
+          *  ajaxDelete.js
+          *  ajaxLogin.js
+          *    familyDeleteAjax.js
+      *    style.css
+*     README.md
+*     README.MD
+*     /resources
+      * /views
+         *  add_family.njk
+         *  addMemberToFamily.njk
+         *  add_todo.njk
+         *  editFamily.njk
+         *  editTodo.njk
+         *  error.njk
+         *  errors
+         *  index.njk
+         *  family.njk
+         *  index.njk
+         *  login.njk
+         *  master.njk
+         *  modifyProfile.njk
+         *  myFamilies.njk
+         *  myTodos.njk
+         *  navbar.njk
+         *  profile.njk
+         *  register.njk
+         *  todo.njk
+         *    welcome.njk
+*     server.js
+*     settings.json
+*     /storage
+*     /tests
+     *  /add_new_family
+          *  add_new_family.xml
+          *    description.txt
+     *  /add_new_todo
+          *  add_new_todo.xml
+          *    description.txt
+     *  /login_test_case
+          *  description.txt
+          *    login.xml
+     *  /mark_todo_as_complete
+          *  description.txt
+          *    mark_todo_as_complete.xml
+     *  /modify_user_info
+         *  description.txt
+         *    modify_user_info.xml
