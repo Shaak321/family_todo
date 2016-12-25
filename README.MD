@@ -24,3 +24,5 @@
     * [Implementation](doc/client_side_javascript_impl.md)
   * Tests
     * [Cases](doc/tests.md)
+  * Bibliography
+    * [Bibliography](doc/bib.md)
