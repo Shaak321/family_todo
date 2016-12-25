@@ -18,5 +18,5 @@
   * Architecture design
     * [Site map](doc/sitemap.md)
     * [End points](doc/end_points.md)
-  * [Database design](doc/database_design.md)
-  * [Renderings](blank)
+    * [Database design](doc/database_design.md)
+    * [Renderings](doc/renderings.md)
