@@ -12,7 +12,7 @@
     * [Usage model](doc/usage_model.md)
   * Implementation
     * [Developer enviroment](doc/de.md)
-    * [Directory map](doc/directory_map.md)
+    * [Directory map](doc/directory_map)
   * Architecture design
     * [Site map](doc/sitemap.md)
     * [End points](doc/end_points.md)
