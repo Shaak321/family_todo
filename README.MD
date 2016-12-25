@@ -20,3 +20,7 @@
     * [Renderings](doc/renderings.md)
   * User documentation
     * [Usage and requirements](doc/user/usage_and_req.md)
+  * Client side javascript
+    * [Implementation](doc/client_side_javascript_impl.md)
+  * Tests
+    * [Cases](doc/test_cases.md)

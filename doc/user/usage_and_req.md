@@ -1,6 +1,6 @@
 # Usage and Requirements
 ## Requirements
-**Enviroment:** optional Operating system
+**Enviroment:** Optional Operating system
 
 **Hardware:** : Based on your operating system
 
