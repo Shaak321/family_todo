@@ -1,6 +1,6 @@
 # Renderings (final)
 
-  ### Homepage
+### Homepage
 ![homepage](/doc/img/homepage.png)
 
 ### Login screen
