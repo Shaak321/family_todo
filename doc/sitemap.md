@@ -21,3 +21,4 @@
       * TODO details
       * Edit TODO's
     * Create new Todo
+    * Sign out
