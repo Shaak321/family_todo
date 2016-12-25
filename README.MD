@@ -16,7 +16,6 @@
     * [Processes](blank)
   * [Wire frames](blank)
   * Architecture design
-    * [Components](blank)
     * [Site map](doc/sitemap.md)
     * [End points](http://people.inf.elte.hu/szguaai/alkfejl/familyTodo.html)
   * [Database design](doc/database_design.md)
