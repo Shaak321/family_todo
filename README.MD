@@ -23,4 +23,4 @@
   * Client side javascript
     * [Implementation](doc/client_side_javascript_impl.md)
   * Tests
-    * [Cases](doc/test_cases.md)
+    * [Cases](doc/tests.md)
