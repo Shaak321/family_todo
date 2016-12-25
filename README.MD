@@ -18,3 +18,5 @@
     * [End points](doc/end_points.md)
     * [Database design](doc/database_design.md)
     * [Renderings](doc/renderings.md)
+  * User documentation
+    * [Usage and requirements](doc/user/usage_and_req.md)

@@ -6,7 +6,7 @@
   * Registered user
     * Homepage
     * Login/Logout
-    * My profile
+    * Edit profile
       * Edit informations
     * My families
         * Edit family (if family member )
