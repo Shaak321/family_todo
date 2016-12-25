@@ -1,4 +1,4 @@
-#Family todo
+# Family todo
 
 **Summary:** This project is a todo list website for families written in javascript.  
 
@@ -9,6 +9,7 @@
     * [Functional](doc/functional_requirements.md)
     * [Non-functional](doc/non_functional_requirements.md)
     * [Glossary](doc/glossary.md)
+    * [Usage model](doc/usage_model.md)
   * Roles, uses cases, processes
     * [Roles](blank)
     * [Use cases](blank)
