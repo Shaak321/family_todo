@@ -16,6 +16,4 @@
       * Use error messages
       * Ability to retype erroneous inputs
     * Fields public to the users, should be validated against harmful code  
- * Maintenance  
-     * Maintenance should be easy, for example it needs to be clear and effortless to add a new webpage to the mix.
-     * View should be decoupled from data and control.
+      * View should be decoupled from data and control.
