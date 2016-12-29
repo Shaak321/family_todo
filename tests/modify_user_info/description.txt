@@ -1,1 +1,0 @@
-A felhasználó bejelentkezik, megváltoztatja a nevét, ezután ellenorzi, hogy a változtatás valóban végbement, visszaírja az eredeti nevet, majd kilép.

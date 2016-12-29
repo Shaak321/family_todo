@@ -1,1 +1,0 @@
-Bejelentkezünk, majd todo-t hozzáadunk, majd mark_as_completed-et nyomunk, ezután listázzuk ot, majd modify és kivesszük a mark_as_completed-et, ezután kijelentkezünk!

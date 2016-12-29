@@ -1,1 +1,0 @@
-A felhasználó bejelentkezik, majd hozzáad egy új todo-t, ezután a My todos fülön megnézi, hogy tényleg létrejött, ezután kijelentkezik.
